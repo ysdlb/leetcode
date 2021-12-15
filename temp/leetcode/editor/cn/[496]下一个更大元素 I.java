@@ -48,6 +48,9 @@ import java.util.Stack;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution496 {
+    /**
+     * 简单单调栈
+     */
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int[] res = new int[nums1.length];
         if (nums1.length == 0) return res;
@@ -70,6 +73,59 @@ class Solution496 {
         for (int i = 0; i < nums1.length; i++)
             res[i] = map.get(nums1[i]);
 
+        return res;
+    }
+}
+
+class SolutionSimple496 {
+    /**
+     * 简单单调栈
+     * 哈希放进一个 null 太憨憨了
+     */
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] res = new int[nums1.length];
+        if (nums1.length == 0) return res;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        Stack<Integer> stack = new Stack<>();
+        for (int i = nums2.length - 1; i >= 0; i--) {
+            int k = nums2[i];
+            while (!stack.empty() && stack.peek() <= k)
+                stack.pop();
+
+            map.put(k, stack.isEmpty() ? -1 : stack.peek());
+            stack.push(k);
+        }
+        for (int i = 0; i < nums1.length; i++)
+            res[i] = map.get(nums1[i]);
+        return res;
+    }
+}
+
+class SolutionInverse496 {
+    /**
+     * 正序遍历单调栈
+     * 因为处理的不是当前元素，而是栈中元素, 所以栈用来保存数组索引
+     * 只要后面元素比栈顶索引对应的元素大，索引出栈，更改res[sta.pop()]的数值
+     * 遍历完后栈中索引位置无下一个最大的元素
+     */
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] res = new int[nums1.length];
+        if (nums1.length == 0) return res;
+
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < nums2.length; i++) {
+            while (!stack.empty() && nums2[stack.peek()] < nums2[i])
+                map.put(nums2[stack.pop()], nums2[i]);
+
+            stack.push(i);
+        }
+        for (int i = 0; i < nums1.length; i++)
+            res[i] = map.getOrDefault(nums1[i], -1);
         return res;
     }
 }

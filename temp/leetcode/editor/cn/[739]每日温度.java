@@ -34,7 +34,7 @@
 import java.util.Stack;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution739 {
     /**
      * 正逆序遍历单调栈详见 496, 503
      */

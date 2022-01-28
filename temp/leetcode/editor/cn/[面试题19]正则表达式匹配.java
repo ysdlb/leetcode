@@ -92,30 +92,58 @@ class SolutionOffer19 {
 
 class SolutionOffer19_LCS {
     /**
-     * 求最长连续子序列时
-     * f[i][j] = f[i-1][j-1]; if s[i] == p[i][j]
-     * f[i][j] = false, if s[i] != p[j]
+     * 求最长连续子序列时, f[i][j] 代表 s[1..i] 和 p[1..j] 是否匹配
+     * if s[i] == p[j] -> f[i][j] = f[i-1][j-1];
+     * if s[i] != p[j] -> f[i][j] = false,
+     *
+     * 在正则表达式中, 需要考虑上述上面实现的四种情况, 分为当前字符是不是 * 两大类讨论
+     * if p[j] == '*' (p[j-1] 可以被匹配 0-n 次)
+     *      when p[j-1] 被匹配 >=1 次; 比较 s[i],p[j-1] 与 f[s-1][j-2]
+     *          if s[i] == p[j-1] -> f[i][j] = f[i-1][j-2];
+     *          el s[i] != p[j-1] -> f[i][j] = false,
+     *          ==> (p[j-1] == '.' || s[i] == p[j-1]) && f[i-1][j-2]
+     *          ==> (p[j-1] == '.' || s[i] == p[j-1]) && f[i-1][j]
+     *
+     *      when p[j-1] 被匹配 0 次:
+     *          f[i][j] = f[i][j-2]
+     *
+     * if p[j] != '*'
+     *      if s[i] == p[j] -> f[i][j] = f[i-1][j-1];
+     *      el s[i] != p[j] -> f[i][j] = false,
+     *      ==> (p[j] == '.' || s[i] == p[j]) && f[i-1][j-1]
      *
      *
      */
     public boolean isMatch(String s, String p) {
         if (s == null || p == null) return false;
 
-        boolean[][] dp = new boolean[s.length()][p.length()];
-        for (int i = 1; i < s.length(); i++) {
-            for (int j = 1; j < p.length(); j++) {
-                // 隐含条件 i < s.length
-                if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.') {
-                    dp[i][j] = (i == 0 && j == 0);
+
+        boolean[][] dp = new boolean[s.length()+1][p.length()+1];
+        dp[0][0] = true;
+
+        for (int i = 0; i <= s.length(); i++) {
+            for (int j = 1; j <= p.length(); j++) {
+                if (p.charAt(j-1) == '*') {
+                    // p[j] 即 p.charAt(j-1) 匹配 1~n 次
+                    dp[i][j] = i > 0 && (p.charAt(j-2)=='.' ||  s.charAt(i-1)==p.charAt(j-2))
+                            // (a, .*)          (aa, a*)
+                            && (dp[i-1][j-2] || dp[i-1][j]);
+                    // p[j] 即 p.charAt(j-1) 匹配 0 次,
+                    // 这里不要漏掉 i == 0 的情况
+                    dp[i][j] = dp[i][j] || dp[i][j-2];
                 } else {
+                    dp[i][j] = i > 0 && (p.charAt(j-1)=='.' || s.charAt(i-1)==p.charAt(j-1))
+                            && dp[i-1][j-1];
                 }
             }
         }
-        return false;
+        return dp[s.length()][p.length()];
     }
 
     public static void main(String[] args) {
-        boolean isM = new SolutionOffer19().isMatch("aab", "c*a*b");
+        boolean isM = new SolutionOffer19_LCS().isMatch("aa", "a*");
+//        boolean isM = new SolutionOffer19_LCS().isMatch("a", ".*..a*");
+//        boolean isM = new SolutionOffer19_LCS().isMatch("aab", ".*a*b");
         System.out.println(isM);
     }
 }

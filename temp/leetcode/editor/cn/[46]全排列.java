@@ -38,6 +38,13 @@
 import java.util.*;
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/**
+ * <a href="https://leetcode-cn.com/problems/permutations/">leetcode-46</a>
+ * List 即当回溯内容，又当回溯暂存列表
+ * 不用这种方法的话，必须在回溯前 used[i] 标记已使用, 暂存列表 add
+ * 回溯完成后 remove, 标记为未使用
+ */
 class Solution46 {
 
     public List<List<Integer>> permute(int[] nums) {

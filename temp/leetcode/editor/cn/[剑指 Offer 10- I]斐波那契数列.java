@@ -37,6 +37,9 @@
 import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * <a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/">leetcode-offer-10</a>
+ */
 class SolutionOffer10_1 {
     private static final int MOD = 1000000007;
     /**

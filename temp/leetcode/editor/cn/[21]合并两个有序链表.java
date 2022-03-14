@@ -37,14 +37,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ * <a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">leetcode-21</a>
  */
 class Solution21 {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -68,7 +61,7 @@ class Solution21 {
         cur.next = cur1 == null ? cur2 : cur1;
         return head.next;
     }
-    private class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
         ListNode() {}

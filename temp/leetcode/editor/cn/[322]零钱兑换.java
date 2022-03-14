@@ -55,6 +55,11 @@
 import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/**
+ * <a href="https://leetcode-cn.com/problems/coin-change/">leetcode-322</a>
+ * <a href="https://leetcode-cn.com/problems/coin-change-2/">leetcode-518</a>
+ */
 class Solution322 {
     /**
      * 标准动态规划问题, 懒得写状态转移方程

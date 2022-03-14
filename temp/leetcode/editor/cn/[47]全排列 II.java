@@ -85,6 +85,14 @@ class Solution47 {
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
+/**
+ * 上面那个对某一层的全局集合反而不对
+ *
+ * <a href="https://leetcode-cn.com/problems/permutations-ii/">leetcode-47</a>
+ * List 即当回溯内容，又当回溯暂存列表
+ * 不用这种方法的话，必须在回溯前 used[i] 标记已使用, 暂存列表 add
+ * 回溯完成后 remove, 标记为未使用
+ */
 class Solution47A {
 
     public List<List<Integer>> permuteUnique(int[] nums) {
@@ -101,7 +109,7 @@ class Solution47A {
     /**
      * 取巧做法, 用 set 更直白些
      * 回溯搜索 + 剪枝
-     * nums 有重复, 只要保证 在当前位置搜索当时候 ( 某一层递归 ）搜索 （ 填入 ）的值不重复就可以了
+     * nums 有重复, 只要保证 在当前位置搜索 ( 仅限这个节点) 的时候 ( 某一层递归 ）搜索 （ 填入 ）的值不重复就可以了
      * @param resCol 结果集合
      * @param output 回溯列表, size 表示总数量, [first, ...] 是将要回溯的内容
      * @param first 回溯内容的启始位置

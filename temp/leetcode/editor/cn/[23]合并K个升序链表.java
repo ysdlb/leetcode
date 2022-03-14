@@ -53,23 +53,9 @@ import java.util.Optional;
 import java.util.PriorityQueue;
 
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ * <a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/">leetcode-23</a>
  */
 class Solution23 {
-    private class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
     public ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
         for (ListNode node: lists) {
@@ -129,6 +115,14 @@ class Solution23 {
         }
         cur.next = cur1 == null ? cur2 : cur1;
         return head.next;
+    }
+
+    private static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

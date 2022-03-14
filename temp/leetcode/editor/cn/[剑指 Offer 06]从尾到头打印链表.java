@@ -47,7 +47,7 @@ class SolutionOffer6 {
         return res;
     }
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
         ListNode(int x) { val = x; }

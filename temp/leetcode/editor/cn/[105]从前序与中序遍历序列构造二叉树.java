@@ -36,7 +36,7 @@
 /**
  * Definition for a binary tree node.
  */
-class Solution {
+class Solution105 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0) return null;
         return build(preorder, 0, inorder, 0, preorder.length);

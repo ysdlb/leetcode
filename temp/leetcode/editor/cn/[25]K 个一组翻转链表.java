@@ -57,14 +57,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ * <a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/submissions/">leetcode-25</a>
  */
 class Solution25 {
     /*
@@ -72,6 +65,9 @@ class Solution25 {
      */
     /**
      * 方法描述: 按 k 一组反转 head 链表, 并返回反转后的头节点
+     * 反转参考 206, 92
+     * <a href="https://leetcode-cn.com/problems/UHnkqh/">leetcode-offer-24 反转</a>
+     *
      */
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode right = head;

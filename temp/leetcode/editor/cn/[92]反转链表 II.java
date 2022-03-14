@@ -49,7 +49,33 @@ import java.util.List;
  */
 class DoublePoint92 {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        return null;
+        ListNode curNode = head, preNode = null;
+        int num = 0;
+        while (curNode != null && ++num < left) {
+            preNode = curNode;
+            curNode = curNode.next;
+        }
+        curNode = this.reverseList(curNode, right - left + 1);
+
+        if (preNode != null) {
+            preNode.next = curNode;
+        }
+        else {
+            head = curNode;
+        }
+        return head;
+    }
+
+    private ListNode reverseList(ListNode fakeHead, int deep) {
+        ListNode curNode = fakeHead, preNode = null;
+        for (int _deep = 0; curNode != null && _deep < deep; _deep++) {
+            ListNode nextNode = curNode.next;
+            curNode.next = preNode;
+            preNode = curNode;
+            curNode = nextNode;
+        }
+        fakeHead.next = curNode;
+        return preNode;
     }
 
     private static class ListNode {

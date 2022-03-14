@@ -32,6 +32,10 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/**
+ * <a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/">leetcode-offer-10</a>
+ */
 class SolutionOffer10_2 {
     private static final int MOD = 1000000007;
 

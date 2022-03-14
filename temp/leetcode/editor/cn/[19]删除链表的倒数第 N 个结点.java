@@ -43,7 +43,7 @@
 import java.util.Stack;
 
 /**
- * Definition for singly-linked list.
+ * <a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">leetcode-19</a>
  */
 class Solution19 {
     /**
@@ -87,30 +87,35 @@ class Solution19 {
 class DoublePoint19 {
     /**
      * 先寻找倒数第 n 个节点 (假设链表有 m 个元素)
-     * 双指针, 第 1 个指针先走 n 步 (此时第一个指针指向倒数第 m - n 个),
-     * 第二个指针指向 head, 伴随第一个指针走到链表终点,
-     * 第二个指针指向了 第 m-n 个, 即倒数 第 m - ( m - n) = n 个
+     * 双指针:
+     * p1 先走 n 步 (此时 p1 指向正数第 n+1 倒数第 m-n),
+     * p2 指向 head, 伴随 p1 走到链表终点, 走到终点需要 m-n-1 步, 走到 null 需要多一步, m-n,
+     *
+     * p1 只需要走到终点就可以, 走 m-n-1 步; p2 指向了 第 m-n 个, 倒数 第m - ( m-n-1) = n+1个
+     *
+     * p2.next 就是应该被删除的节点, p2.next = p2.next.next 删除就好了
+     *
+     * 改一改更优雅
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode p1 = head, p2 = head, preP2 = null;
-
-        for (int i = 0; p1 != null && i < n; i++) {
+        ListNode p1 = head, p2 = head;
+        // p1 先走 n 步
+        for (int i = 0; i < n; i++) {
             p1 = p1.next;
+            // 如果不设置虚拟头节点, 要加这个判断
+            // 如果 p1 走了 n 步是 null, 说明一共就 n 个元素, 删除倒数第 n 个元素, 就是头节点
+            if (p1 == null)
+                return head.next;
         }
 
-        while (p1 != null) {
+        // p1 走到终点
+        while (p1.next != null) {
             p1 = p1.next;
-            preP2 = p2;
             p2 = p2.next;
         }
 
         // 如果待删除的节点存在
-        if (p2 != null) {
-            if (preP2 == null)
-                head = p2.next;
-            else
-                preP2.next = p2.next;
-        }
+        p2.next = p2.next.next;
         return head;
     }
 

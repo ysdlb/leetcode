@@ -22,6 +22,9 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class SolutionOffer49 {
     /**
+     * <a href="https://leetcode-cn.com/problems/chou-shu-lcof/">leetcode-offer-49</a>
+     * <a href="https://leetcode-cn.com/problems/ugly-number-ii/">leetcode-264 (同 offer 49)</a>
+     *
      * 设已有最大丑数为 M, 那么下一个丑数必定是 M 及其以前的某个数 *2, *3 or *5 得来的, 我们只需要找到最小值便可得到下一个丑数
      * 丑数为一个数组, 为数组添加下一个丑数时, 肯定数当前数组的3个元素各自乘 2,3,5 得到的 3 个数中最小的一个
      * 对应倍数(2,3,5)的那个游标向后移动一位, 以便进行下一次比较(添加下一个丑数)

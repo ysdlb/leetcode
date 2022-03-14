@@ -32,18 +32,31 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
+ * <a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/">leetcode82</a>
  */
 class Solution82 {
+    /**
+     * 参考 26, 83
+     */
     public ListNode deleteDuplicates(ListNode head) {
-        return null;
+        // 虚拟头部
+        ListNode h = new ListNode(-1);
+        h.next = head;
+        ListNode cur = h;
+
+        // 如果后面两个不为 null
+        while (cur.next != null && cur.next.next != null) {
+            // 判断后面两个是否为重复元素
+            if (cur.next.val == cur.next.next.val) {
+                int dup = cur.next.val;
+                // 跳过所有的重复元素 dup
+                while (cur.next != null && cur.next.val == dup)
+                    cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+        return h.next;
     }
 
     private static class ListNode {

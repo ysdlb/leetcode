@@ -40,7 +40,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution1905 {
     public int countSubIslands(int[][] grid1, int[][] grid2) {
         return 0;
     }

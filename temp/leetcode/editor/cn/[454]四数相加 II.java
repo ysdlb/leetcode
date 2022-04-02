@@ -43,9 +43,7 @@
 
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution454 {
@@ -53,7 +51,7 @@ class Solution454 {
      * 次暴力实现
      */
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
-        Map<Integer, Integer> map = new HashMap();
+        Map<Integer, Integer> map = new HashMap<>();
         for (int n3: nums3) {
             for (int n4: nums4) {
                 map.compute(n3+n4, (key, oldV) -> oldV == null ? 1 : oldV+1);

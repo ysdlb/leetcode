@@ -40,7 +40,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution342 {
     /**
      * 参考 231, 在只有一个 1 的基础上, 这个 1 的位置在低位上
      */

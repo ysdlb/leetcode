@@ -48,6 +48,35 @@ class Solution3 {
      * 1. 如果 c 在集合中, 从集合中删除 c 之前包括 c 的所有元素;
      * 2. 将 c 加入集合
      *
+     * 因为是窗口, 所以不用一个一个删, 这样时间复杂度就是 O(n) 了
+     * 期间集合的最大容量就是符合要求的最长字串长度
+     */
+    public int lengthOfLongestSubstring_v2(String s) {
+        int[] map = new int[128];
+        Arrays.fill(map, -1);
+
+        int l = 0, r = 0;
+        int ret = 0;
+        while (r < s.length()) {
+            int ch = s.charAt(r);
+            // 如果集合中存在
+            if (l <= map[ch] && map[ch] <= r) {
+                int end = map[ch];
+                if (l <= end)
+                    l = end+1;
+            }
+            map[ch] = r;
+            ret = Math.max(ret, r-l+1);
+            r++;
+        }
+        return ret;
+    }
+    /**
+     * 无重复元素的最长字串, 不是子序列
+     * 遍历字符串
+     * 1. 如果 c 在集合中, 从集合中删除 c 之前包括 c 的所有元素;
+     * 2. 将 c 加入集合
+     *
      * 期间集合的最大容量就是符合要求的最长字串长度
      */
     public int lengthOfLongestSubstring(String s) {
@@ -72,7 +101,7 @@ class Solution3 {
     }
 
     public static void main(String[] args) {
-        int len = new Solution3().lengthOfLongestSubstring("abcabcbb");
+        int len = new Solution3().lengthOfLongestSubstring_v2("abcabcbb");
         System.out.println(len);
     }
 }

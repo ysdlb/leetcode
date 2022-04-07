@@ -56,6 +56,9 @@ class Solution875 {
      * 注: 吃每一堆香蕉的所需时间要向上取整
      *
      * 这个题是全程自己想的（提示了二分）
+     *
+     * 类似题
+     * 1011
      */
     public int minEatingSpeed(int[] piles, int h) {
         if (piles.length < 1) return -1;

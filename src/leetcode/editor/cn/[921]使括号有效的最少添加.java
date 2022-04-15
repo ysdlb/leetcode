@@ -51,6 +51,7 @@ class Solution921 {
      * 但右括号一旦失配, 再也没有机会配置了; 这部分失配的记录为 has
      *
      * 括号匹配规则参考: <a href="https://leetcode-cn.com/problems/generate-parentheses/">leetcode-22</a>
+     * 进阶参考: <a href="https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string/">leetcode-1541</a>
      */
     public int minAddToMakeValid_v2(String s) {
         int need = 0;

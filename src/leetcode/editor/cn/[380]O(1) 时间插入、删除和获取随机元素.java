@@ -78,6 +78,8 @@ class RandomizedSet {
      * 1. map remove
      * 2. array move and remove
      * 3. map move, 注意只是 move, 如果第一步恰好 remove 的是 array 的最后一个元素, 要专门考虑
+     *
+     * 22-4-17 补充: 其实就是 index，和 array.size - 1 位置交换
      */
     public boolean remove(int val) {
         Integer v = val;

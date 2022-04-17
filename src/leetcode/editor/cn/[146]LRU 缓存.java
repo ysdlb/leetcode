@@ -64,6 +64,8 @@ import java.util.Map;
  *
  * appendTail(Node) 方法可能涉及到 5 个指针
  * head，tail，旧 tail.post，新 node.pre，新 node.post
+ *
+ * LFU 完全不同的思路, 460
  */
 class LRUCache {
     private final Map<Object, Node> map = new HashMap<>();

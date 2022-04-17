@@ -58,37 +58,38 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class LRUCache {
+class LRUCache_LinkedHashMap {
+    private static class LRUCache {
+        private static class LRU extends LinkedHashMap<Integer, Integer> {
 
-    private static class LRU extends LinkedHashMap<Integer, Integer> {
+            private final int cap;
 
-        private final int cap;
+            public LRU(int size) {
+                super((int)(size / 0.75f + 1.0f), 0.75f, true);
+                this.cap = size;
+            }
 
-        public LRU(int size) {
-            super((int)(size / 0.75f + 1.0f), 0.75f, true);
-            this.cap = size;
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+                return size() > cap;
+            }
+
         }
 
-        @Override
-        protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-            return size() > cap;
+        private final LRU lru;
+
+        public LRUCache(int capacity) {
+            lru = new LRU(capacity);
         }
 
-    }
+        public int get(int key) {
+            Integer integer;
+            return (integer = lru.get(key)) == null ? -1 : integer;
+        }
 
-    private final LRU lru;
-
-    public LRUCache(int capacity) {
-        lru = new LRU(capacity);
-    }
-    
-    public int get(int key) {
-        Integer integer;
-        return (integer = lru.get(key)) == null ? -1 : integer;
-    }
-    
-    public void put(int key, int value) {
-        lru.put(key, value);
+        public void put(int key, int value) {
+            lru.put(key, value);
+        }
     }
 }
 

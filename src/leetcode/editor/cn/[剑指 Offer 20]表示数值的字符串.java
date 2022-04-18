@@ -83,6 +83,9 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class SolutionOffer20 {
+    /**
+     * 憨憨题, 直接抄答案
+     */
     public boolean isNumber(String s) {
         return false;
     }

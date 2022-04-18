@@ -31,6 +31,10 @@
 import java.util.PriorityQueue;
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/**
+ * 相似题目 剑指Offer40, 703
+ */
 class Head215 {
     /**
      * 一个小顶堆

@@ -70,18 +70,56 @@ class Node {
 */
 
 class Solution116 {
+    /**
+     * 递归, 有重复计算
+     */
     public Node connect(Node root) {
         if (root == null) return null;
         connectTwoNodes(root.left, root.right);
         return root;
     }
 
+    /**
+     * 节点间存在非直系联系, 所以我们要跨一代来处理 next 指针
+     */
     private void connectTwoNodes(Node l, Node r) {
         if (l == null) return;
         l.next = r;
         connectTwoNodes(l.left, l.right);
         connectTwoNodes(r.left, r.right);
         connectTwoNodes(l.right, r.left);
+    }
+
+    /**
+     * 上述递归的循环实现, 一种 O(1) 空间复杂度的层序遍历
+     *
+     * 节点间存在非直系联系, 所以我们要跨一代来处理 next 指针
+     * 当我们在第 N 层建立 next 指针的时候, 处于第 N-1 层.
+     * 当第 N 层节点的 next 指针全部建立完成后, 移至第 N 层, 建立第 N+1 层节点的 next 指针
+     */
+    public Node connect_v2(Node root) {
+        if (root == null) return null;
+
+        Node specLevelNode = root;
+        while (specLevelNode != null) {
+            Node node = specLevelNode;
+            while (node != null) {
+                // 完美二叉树, right != null -> left != null
+                if (node.right != null) {
+                    node.left.next = node.right;
+
+                    if (node.next != null) {
+                        node.right.next = node.next.left;
+                    }
+                }
+
+                node = node.next;
+            }
+
+            specLevelNode = specLevelNode.left;
+        }
+
+        return root;
     }
 
     private static class Node {

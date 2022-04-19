@@ -76,7 +76,7 @@ class NestedIterator implements Iterator<Integer> {
     private final Iterator<Integer> iterator;
 
     /**
-     * 直接做一个现成的数组
+     * 就是 DFS，直接构造器里做一个现成的数组
      */
     public NestedIterator(List<NestedInteger> nestedList) {
         List<Integer> array = new ArrayList<>();

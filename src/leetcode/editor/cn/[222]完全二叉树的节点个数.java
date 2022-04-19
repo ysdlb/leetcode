@@ -93,6 +93,8 @@ class Simple222 {
  * 利用完全二叉树的性质
  * 1. 如果左右子树的最左高度和最右高度相同, 则直接根据高度计算
  * 2. 如果不相同, 按照上述步骤继续计算左子树和右子树
+ *
+ * 留存，同等时间复杂度的叶子结点二分解法
  */
 class Complex222 {
     public int countNodes(TreeNode root) {

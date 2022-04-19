@@ -54,7 +54,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
- * Definition for a binary tree node.
+ * 序列化相关参考：105, 106
  */
 class Codec297 {
 

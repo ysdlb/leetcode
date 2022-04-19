@@ -21,19 +21,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
+ * 序列化相关参考：105, 297
  */
 class Solution106 {
     public TreeNode buildTree(int[] inorder, int[] postorder) {

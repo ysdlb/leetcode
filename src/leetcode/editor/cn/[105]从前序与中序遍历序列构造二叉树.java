@@ -34,7 +34,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 /**
- * Definition for a binary tree node.
+ * 序列化相关参考：106, 297
  */
 class Solution105 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {

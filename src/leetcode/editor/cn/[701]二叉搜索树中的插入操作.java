@@ -52,6 +52,9 @@ class Solution701 {
      * 在以 root 为根的 BST 中插入 val, 返回 root
      * 如果 root 为 null, 则 new 一个节点, 并返回 这个节点
      * 否则, 根据 BST 的性质, 判断去左子树还是右子树
+     *
+     * 递归解法非常优雅, 比循环解法更直观
+     * 题解是循环解法, 留存
      */
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);

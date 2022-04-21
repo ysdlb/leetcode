@@ -57,30 +57,16 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution450 {
     /**
+     * 非常好的递归思想, 以及对二叉搜索树性质的总结
      * 1. 找到需要删除的节点 A
      * 2. 如果找到了, 删除 A
-     *    a. 如果 A 无左子树, 则 A 的右子树替代其位置: A.parent = A.right, 结束
-     *    b. 如果 A 无右子树, 则 A 的左子树替代其位置: A.parent = A.left, 结束
+     *    a. 如果 A 无左子树, 则 A 的右子树替代其位置: A = A.right, 结束
+     *    b. 如果 A 无右子树, 则 A 的左子树替代其位置: A = A.left, 结束
      *    c. 如果上述两种情况都不满足, 则 A 的右子树的最左节点是大于 A 的最小值, A 的左节点是小于 A 的最大值
      *      ① A 的左子树作为 A 右子树最左节点的左子树
-     *      ② A.parent = A.right
+     *      ② A = A.right
      *
      * 方法描述：
      *      在当前树中删除节点 key, 并返回删除后的根节点

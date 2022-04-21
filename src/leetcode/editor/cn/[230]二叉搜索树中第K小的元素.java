@@ -44,9 +44,7 @@ class Solution230 {
 
     /**
      * 二叉搜索树的中序遍历就是有序的, 遍历第 k 个就好
-     * @param root
-     * @param k
-     * @return
+     * 达到题目要求很简单，但完善它很难，参考题解，留存
      */
     public int kthSmallest(TreeNode root, int k) {
         traverse(root, k);

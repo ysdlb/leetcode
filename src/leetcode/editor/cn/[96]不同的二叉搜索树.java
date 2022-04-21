@@ -29,6 +29,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution96 {
     /**
+     * 类似题 95
      * 返回 n 个不同的数可以构成多少种二叉树
      */
     public int numTrees(int n) {

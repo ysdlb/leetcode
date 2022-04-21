@@ -32,26 +32,75 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution95 {
+
+    /**
+     * 不同与 96 的解法
+     * 利用二叉搜索树的性质
+     */
     public List<TreeNode> generateTrees(int n) {
-        return null;
+        NULL.add(null);
+        return build(1, n);
+    }
+    private List<TreeNode> NULL = new ArrayList<>();
+
+    private List<TreeNode> build(int min, int max) {
+        if (min > max) return NULL;
+
+        List<TreeNode> ret = new ArrayList<>();
+        for (int i = min; i <= max; i++) {
+            List<TreeNode> left = build(min, i-1);
+            List<TreeNode> right = build(i+1, max);
+            for (TreeNode lo: left) {
+                for (TreeNode hi: right) {
+                    TreeNode node = new TreeNode(i);
+                    node.left = lo;
+                    node.right = hi;
+                    ret.add(node);
+                }
+            }
+        }
+        return ret;
+    }
+
+    /**
+     * 同 96 解法, 输出不同
+     * 需要深拷贝, 不然只是输出来某些情况, 但不符合二叉搜索树的性质
+     */
+    public List<TreeNode> generateTrees_Error(int n) {
+        List<List<TreeNode>> ret = new ArrayList<>(n+1);
+        for (int i = 0; i <= n; i++) ret.add(null);
+
+        // ret[0] 为空
+        List<TreeNode> zeroTrees = new ArrayList<>();
+        zeroTrees.add(null);
+        ret.set(0, zeroTrees);
+
+        for (int i = 1; i <= n; i++) {
+            List<TreeNode> item = new ArrayList<>();
+            for (int j = 0; j < i; j++) {
+                int left = j, right = i - j - 1;
+                for (TreeNode lTree: ret.get(left)) {
+                    for (TreeNode rTree: ret.get(right)) {
+                        TreeNode node = new TreeNode(i);
+                        node.left = lTree;
+                        node.right = rTree;
+                        item.add(node);
+                    }
+                }
+            }
+            ret.set(i, item);
+        }
+
+        return ret.get(n);
+    }
+
+    public static void main(String[] args) {
+        Solution95 solution95 = new Solution95();
+        solution95.generateTrees(3);
     }
 
     private static class TreeNode {

@@ -37,19 +37,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
+ * 采用将二叉树序列化的形式，建立哈希表，统计每次出现的次数，添加到结果集当中
+ * 空间复杂度 O(N^2)
+ *
+ * 留存: 唯一标志符, 空间复杂度 O(N)
  */
 class Solution652 {
     // 代表空节点

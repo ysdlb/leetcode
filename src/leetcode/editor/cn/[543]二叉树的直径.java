@@ -29,6 +29,7 @@ class Solution543 {
      * 两结点之间的路径长度是以它们之间边的数目表示。
      * 后序遍历, 二叉树的直径为某颗子树中左子树和右子树的最大深度之和;
      * 求深度参考 104, 111
+     * 相似参考: 124
      */
     int ret = 0;
     public int diameterOfBinaryTree(TreeNode root) {

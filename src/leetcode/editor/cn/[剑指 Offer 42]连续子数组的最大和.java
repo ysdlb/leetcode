@@ -39,6 +39,8 @@ class SolutionOffer42 {
      * 初始状态： dp[0] = nums[0]，即以 nums[0] 结尾的连续子数组最大和为 nums[0] 。
      *
      * 返回值： 返回 dp 列表中的最大值，代表全局最大值。
+     *
+     * 实用参考 124
      */
     public int maxSubArray(int[] nums) {
         int[] dp = new int[nums.length];

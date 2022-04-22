@@ -72,6 +72,8 @@ class Solution1373 {
      * 后序遍历求二叉树的是否为 BST, 最大值, 最小值（判断是不是二叉搜索树）和二叉树的和
      * 记录期间的最大值
      * [是否为BST, minV, maxV, sum]
+     *
+     * 这也是判断二叉搜索树的一种方法
      */
     public int maxSumBST(TreeNode root) {
         postorder(root);

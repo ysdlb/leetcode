@@ -52,7 +52,7 @@ import java.util.Arrays;
 class Solution452 {
     /**
      * 跟合并区间在相交的时候扩张右边界不同
-     * 参考 56
+     * 参考 56, 435
      *
      * [1,  6]
      * [1,2]

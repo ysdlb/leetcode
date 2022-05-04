@@ -70,6 +70,9 @@ class Solution710 {
     private final Random random;
     private final int boundary;
 
+    /**
+     * 同样随机: 382, 398
+     */
     public Solution710(int n, int[] blacklist) {
         map = new HashMap<>();
 

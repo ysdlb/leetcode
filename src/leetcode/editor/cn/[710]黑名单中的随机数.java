@@ -72,6 +72,7 @@ class Solution710 {
 
     /**
      * 同样随机: 382, 398
+     * 随机设计: 380
      */
     public Solution710(int n, int[] blacklist) {
         map = new HashMap<>();

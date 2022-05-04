@@ -60,6 +60,9 @@ class Solution509 {
      *
      * f(n+1)  (1,1)  f(n)           (1,1)^n f(n+1-n)
      * f(n)    (1,0)  f(n-1)   等于   (1,0)   f(n-n)
+     *
+     * 同题目: 剑指 Offer 10-1
+     * 类似题目: 50, 372
      */
     public int fib(int n) {
         // 2 * 1的矩阵

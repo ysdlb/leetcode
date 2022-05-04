@@ -31,6 +31,9 @@ class Solution382 {
 
     private final ListNode head;
 
+    /**
+     * 2022/05/04补充，类似题目：398
+     */
     public Solution382(ListNode head) {
         this.head = head;
     }

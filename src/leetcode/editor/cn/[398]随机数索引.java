@@ -24,6 +24,10 @@ import java.util.Random;
 class Solution398 {
     private final int[] nums;
     private final Random random;
+
+    /**
+     * 2022/05/04补充，类似题目：382
+     */
     public Solution398(int[] nums) {
         this.nums = nums;
         random = new Random(System.currentTimeMillis());

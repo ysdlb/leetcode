@@ -52,9 +52,11 @@ import java.util.*;
 /**
  * O(1) 时间的 insert 和 remove 只能用 hashSet 或者 hashMap 来做
  * O(1) 时间的 getRandom 必须借助随机数和有序且常数时间读取的数组来完成
+ *
  * 类似题目:
  * 水塘抽样 382, 398
  * 数组映射 710
+ * 这里的做法只是数组辅助
  */
 class RandomizedSet {
 

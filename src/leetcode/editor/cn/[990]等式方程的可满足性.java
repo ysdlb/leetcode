@@ -60,13 +60,12 @@ import java.util.List;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution990 {
     /**
-     * 用相等关系构建并查集合
-     * (即等式两边是图中的一个个节点, 相等关系将它们构建为一个个联通子图)
+     * 并查集判断节点的联通关系
      *
+     * 用相等关系构建并查集合 (即等式两边是图中的一个个节点, 相等关系将它们构建为一个个联通子图)
      * 然后遍历所有不等式, 若它们联通, 则改算式集合肯定是冲突的
      *
-     * ps: 维护两个并查集, 相等式的在不等并查集判断是否联通, 然后在相等并查集将它们联通
-     * 不等式反之
+     * 可用并查集实现的题目: 130, 200, 323 (求联通分量)
      */
     public boolean equationsPossible(String[] equations) {
         UnionFind unionFind = new UnionFind(26);

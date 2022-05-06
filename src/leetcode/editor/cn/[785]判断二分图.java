@@ -50,6 +50,13 @@ class TraverseColor785 {
 
     private boolean isOk = true;
 
+    /**
+     * 遍历模拟染色
+     *  a. 如果 v 未被染色，那么我们将其染成与 u 不同的颜色，并对 v 直接相连的节点进行遍历；
+     *  b. 如果 v 被染色，并且颜色与 u 相同，那么说明给定的无向图不是二分图。我们可以直接退出遍历并返回 false 作为答案。
+     *
+     *  类似题目: 886
+     */
     public boolean isBipartite(int[][] graph) {
         if (graph.length == 0) return true;
 

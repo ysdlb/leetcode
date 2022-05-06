@@ -53,12 +53,13 @@
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * 同 785：判断二分图
- */
 class Solution886 {
     private boolean isOk = true;
 
+    /**
+     * 染色
+     * 同 785：判断二分图
+     */
     public boolean possibleBipartition(int n, int[][] dislikes) {
         if (n == 0) return true;
 

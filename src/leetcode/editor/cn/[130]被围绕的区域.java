@@ -44,8 +44,10 @@ class Solution130 {
      *    用 DFS 算法将与边界 'O' 相连的 'O' 标记为 'o'
      * 2. 然后顺序遍历整个图, 将现有的 'O' 替换为 'X', 'o' 替换为 'O'
      *
-     * 另一种思路: 并查集
+     * 另一种思路: 并查集 (相似题目, 990)
      * https://labuladong.gitee.io/algo/2/19/37/
+     *
+     * 类似题目: 200
      */
     public void solve(char[][] board) {
         int m = board.length, n = board[0].length;

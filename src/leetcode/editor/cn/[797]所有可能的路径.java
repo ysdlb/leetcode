@@ -71,6 +71,7 @@ class Solution797 {
     /**
      * 有向无环图的遍历
      * 从 0 节点走到 graph.length 节点
+     * 递归遍历 + 回溯
      */
     private List<List<Integer>> res;
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {

@@ -67,6 +67,8 @@ import java.util.List;
  * 深度优先遍历 && 后续遍历
  * 仅能输出一种拓扑排序结果
  * 拓扑排序的结果是后续遍历的逆序列
+ *
+ * 类似题目: 207, 310, 630
  */
 class DFS210 {
     private boolean hasCycle = false;

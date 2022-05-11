@@ -55,6 +55,8 @@ class Solution200 {
      *
      * 类似题目 130
      * 查看其相似题目
+     *
+     * 有意思的类似题目: 1905
      */
     public int numIslands(char[][] grid) {
         int ret = 0;

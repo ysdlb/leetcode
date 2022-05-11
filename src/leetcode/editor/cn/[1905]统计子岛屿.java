@@ -41,8 +41,40 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1905 {
+    /**
+     * 同 200 岛屿数量
+     * 正常标记 grid2 中的岛屿数量, 只不过 如果 grid1 同位置为水域的话, 这个岛屿无效
+     * 要注意, grid2 整个岛屿要标记完
+     */
     public int countSubIslands(int[][] grid1, int[][] grid2) {
-        return 0;
+        int ret = 0;
+        for (int i = 0; i < grid2.length; i++) {
+            for (int j = 0; j < grid2[0].length; j++) {
+                if (grid2[i][j] == 1 && dfsSign(grid1, grid2, i, j))
+                    ret++;
+            }
+        }
+        return ret;
+    }
+
+    private boolean dfsSign(int[][] grid1, int[][] grid2, int x, int y) {
+        if (x < 0 || y < 0
+                || x >= grid2.length || y >= grid2[0].length
+                || grid2[x][y] != 1)
+            return true;
+
+        boolean ret = grid1[x][y] == 1;
+        grid2[x][y] = 0;
+        if (!dfsSign(grid1, grid2, x - 1, y))
+            ret = false;
+        if (!dfsSign(grid1, grid2, x + 1, y))
+            ret = false;
+        if (!dfsSign(grid1, grid2, x, y - 1))
+            ret = false;
+        if (!dfsSign(grid1, grid2, x, y + 1))
+            ret = false;
+
+        return ret;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -63,6 +63,8 @@ class Solution752 {
      * 这里的难点如果能走通需要求最少的步数
      * 这个迷宫很像 1631
      * 其实是求最短路, 但是由于每步的 cost 都一样, 所以 BFS 层级就是它的总开销
+     *
+     * 接发类似题：773
      */
     public int openLock(String[] deadends, String target) {
         Set<String> deadSet = Arrays.stream(deadends).collect(Collectors.toSet());

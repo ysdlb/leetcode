@@ -1,0 +1,101 @@
+* 
+
+```
+void bfs(vector<vector<int>>& grid,vector<vector<bool>>& vis,int curx,int cury,bool &flag){
+    int m=grid.size();
+    int n=grid[0].size();
+    queue<pair<int,int>> s;
+    s.push({curx,cury});
+    vis[curx][cury]=true;
+    while(!s.empty()){
+        auto q=s.front();
+        s.pop();
+        for(int i=0;i<4;i++){
+            int x=q.first+dx[i];
+            int y=q.second+dy[i];
+            if(x>=0&&y>=0&&x<m&&y<n&&!vis[x][y]&&!grid[x][y]){
+                vis[x][y]=true;
+                if(x==0||y==0||x==m-1||y==n-1)
+                    flag=false;
+                s.push({x,y});
+            }
+        }
+    }
+}//bfs写法，比dfs要快一些。
+```
+
+* 
+
+```
+void dfs(vector<vector<int>>& grid,vector<vector<bool>>& vis,int curx,int cury,bool &flag){
+    int m=grid.size();
+    int n=grid[0].size();
+    stack<pair<int,int>> s;
+    s.push({curx,cury});
+    vis[curx][cury]=true;
+    while(!s.empty()){
+        auto q=s.top();
+        s.pop();
+        for(int i=0;i<4;i++){
+            int x=q.first+dx[i];
+            int y=q.second+dy[i];
+            if(x>=0&&y>=0&&x<m&&y<n&&!vis[x][y]&&!grid[x][y]){
+                vis[x][y]=true;
+                if(x==0||y==0||x==m-1||y==n-1)
+                    flag=false;
+                s.push({x,y});
+            }
+        }
+    }
+}//dfs栈版本，内存反而消耗更多了。。。
+```
+
+主要思路，设置一个m*n的vis矩阵保存grid的访问情况，避免重复访问，在进入一块地区的某一格之后将与这一块地区连通的（即上下左右相邻以及上下左右各自相邻的地区）地区的vis全部置为true.
+主函数从内圈开始搜索，即i=1到m-2以及j=1到n-2，进入一块没有到过的格子即使一个封闭的岛屿
+注意：不管是dfs还是bfs，搜索的时候要设置一个flag变量，如果搜索到边界，将flag置为false，并且这块地不计入岛屿数量。
+
+* 
+
+```
+class Solution {
+public:
+    int dx[4]={1,0,-1,0};
+    int dy[4]={0,-1,0,1};
+    void dfs(vector<vector<int>>& grid,vector<vector<bool>>& vis,int curx,int cury,bool &flag){
+        int m=grid.size();
+        int n=grid[0].size();
+        vis[curx][cury]=true;
+        for(int i=0;i<4;i++){
+            int x=curx+dx[i];
+            int y=cury+dy[i];
+            if(x>=0&&y>=0&&x<m&&y<n&&!vis[x][y]&&!grid[x][y]){
+                if(x==0||y==0||x==m-1||y==n-1){
+                    flag=false;
+                }
+                dfs(grid,vis,x,y,flag);
+            }
+        }
+    }//dfs递归版本
+    int closedIsland(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        vector<vector<bool>> vis(m,vector<bool>(n,false));
+        int num=0;
+        for(int i=1;i<m-1;i++){
+            for(int j=1;j<n-1;j++){//直接从内圈开始搜索，舍弃掉最外面一圈。
+                bool flag=true;
+                if(!vis[i][j]&&!grid[i][j]){
+                    //dfs(grid,vis,i,j,flag);
+                    bfs(grid,vis,i,j,flag);
+                    if(flag){//当flag为真时说明不是地图的边界，计入结果数量。
+                        num++;
+                    }
+                }
+            }
+        }
+        return num;
+    }
+};
+
+```
+

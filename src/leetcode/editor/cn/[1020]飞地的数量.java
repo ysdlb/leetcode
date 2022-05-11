@@ -38,7 +38,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1020 {
     /**
-     * 同 130
+     * 同 130, 1254
      */
     public int numEnclaves(int[][] grid) {
         int m = grid.length, n = grid[0].length;

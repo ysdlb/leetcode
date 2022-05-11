@@ -1,0 +1,44 @@
+### 解题思路
+
+一个常规dfs图论题，在遍历的同时设定boolean变量f ，对于每个dfs分支返回值，对f做一次 "f = f & dfs()" ，即 与 运算， 因此只要有一个分支结果判断为false，最终返回值就是false，代表这个岛屿不封闭。
+
+不可以在找到不封闭条件时直接return出来，因为可能没有dfs完全，而图论的dfs一般是一边dfs一边标记，因此不完全的dfs是会影响后续结果的，我们需要让它递归直到完全结束，而这个代码中我们一直要维护的其实就是f这个布尔变量，它从始至终都在做与运算，所以不必担心最后结果会出问题，因为只要遇到不封闭的条件就注定了最终返回的是false（就像无数个1和一个零一起做相乘运算）
+
+![QQ截图20220409161919.png](https://pic.leetcode-cn.com/1649492376-kEMEgd-QQ%E6%88%AA%E5%9B%BE20220409161919.png)
+
+### 代码
+
+* java
+
+```java
+class Solution {
+    private int m,n;
+    private int ans=0;  //保存 最终答案
+    private int[] dx = {-1,0,1,0}, dy = {0,1,0,-1}; //偏移量
+
+    public int closedIsland(int[][] grid) {
+        m = grid.length;
+        n = grid[0].length;               //保存地图边长
+        if(m <= 2 || n <= 2) return 0;    //特判，地图有一边长不大于2都不可能有封闭岛屿
+        for(int i= 1; i < m-1;i++)        //由于我们要统计的是封闭岛屿，所以我们可以只遍历不含边界的地块，进一步提升效率
+            for(int j = 1; j< n-1;j++ )
+                if(grid[i][j] == 0)
+                    if(dfs(grid,i,j)) ans++;  //dfs这个区域
+        return ans;     
+    }
+    public boolean dfs(int[][] grid ,int x,int y)   //返回值为布尔值。false表示当前岛屿是不封闭状态    
+    {
+        if((x == 0 || x == m-1 || y == 0 || y == n -1) && grid[x][y] == 0) return false;    //如果当前为边界并且是陆地直接返回false 
+        boolean f = true;                   //作为当前dfs分支的返回值       
+        grid[x][y] = 1;                     //标记为海洋
+        for(int i  =0 ;i <4;i++ )           //向四个方向遍历
+        {
+             int x1 = x + dx[i], y1 =  y+ dy[i];       
+             if(x1 < 0 || x1 >= m || y1 < 0 || y1 >= n || grid[x1][y1] == 1) continue;
+             f = f & dfs(grid,x1,y1);       //关键步骤，与运算
+        }
+        return f; 
+    }
+}
+```
+

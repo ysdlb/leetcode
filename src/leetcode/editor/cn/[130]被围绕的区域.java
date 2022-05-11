@@ -48,6 +48,7 @@ class Solution130 {
      * https://labuladong.gitee.io/algo/2/19/37/
      *
      * 类似题目: 200
+     * 同 1020
      */
     public void solve(char[][] board) {
         int m = board.length, n = board[0].length;

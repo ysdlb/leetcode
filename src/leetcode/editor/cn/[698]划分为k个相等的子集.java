@@ -30,6 +30,10 @@
 import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+/**
+ * 416, 494
+ */
 class Solution698 {
 
     public boolean canPartitionKSubsets(int[] nums, int k) {

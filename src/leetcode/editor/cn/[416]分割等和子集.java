@@ -32,6 +32,7 @@
 
 /**
  * <a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/">leetcode-416</a>
+ * 494, 698
  */
 class Solution416 {
     /**

@@ -55,6 +55,7 @@ class Solution37 {
     /**
      * 暴力回溯
      * 类似题目：22，494，698，416
+     * 极为相似: 51
      */
     public void solveSudoku(char[][] board) {
         backtrack(board, 0, 0);

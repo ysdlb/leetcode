@@ -37,6 +37,7 @@
 class Solution55 {
     /**
      * 不断扩展自己的右边界, 如果最后没有到达终点, 返回 false
+     * 其实只要比较下 farthest >= n - 1
      */
     public boolean canJump(int[] nums) {
         int max = 0;

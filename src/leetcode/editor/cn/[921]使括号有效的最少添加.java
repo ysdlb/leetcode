@@ -50,8 +50,8 @@ class Solution921 {
      * 括号匹配左括号可以无限添加, 后面总是可以出现右括号与其配对, 这部分需要的右括号数目记为 need
      * 但右括号一旦失配, 再也没有机会配置了; 这部分失配的记录为 has
      *
-     * 括号匹配规则参考: <a href="https://leetcode-cn.com/problems/generate-parentheses/">leetcode-22</a>
      * 进阶参考: <a href="https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string/">leetcode-1541</a>
+     * 空间复杂度 O(1) 类似应用 22,32
      */
     public int minAddToMakeValid_v2(String s) {
         int need = 0;

@@ -35,6 +35,7 @@ class Solution22 {
      * 全排列问题, 参考 46, 47 题
      * 只有左括号的数量比右括号的数量多的时候, 才能添加右括号, 否则只能添加左括号
      * 括号匹配规则参考: <a href="https://leetcode-cn.com/problems/minimum-add-to-make-parentheses-valid/">leetcode-921</a>
+     * 参考: 921, 1514，32（空间O1做法）
      */
     public List<String> generateParenthesis(int n) {
         List<String> ret = new ArrayList<>();

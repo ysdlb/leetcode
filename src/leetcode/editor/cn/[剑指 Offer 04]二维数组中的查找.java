@@ -43,6 +43,9 @@ class SolutionOffer4 {
      * 顺着思路划分成四个矩形处理, 由于我们只能排除一个矩形, 剩下了一多边形, 变得很难处理
      *
      * 正确思路: 从右上角逐列逐行排除
+     *
+     * 同题：240
+     * 类似题目：74, 378, 668（hard）
      */
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
         if (matrix.length == 0) return false;

@@ -42,9 +42,52 @@
 class Solution668 {
     /**
      * 稍微转化下和 378 是一个题
+     * 将乘法表扩展为一张真正的表, 这张二维表行列有序,
+     * 那么最小值为 min = table[0][0], 最大值 max = table[m-1][n-1]
+     * 对于任意的 x 属于 [min, max], f(x) 为小于等于 x 的值的数量
+     *
+     * 显然, f(x) 单调递增, 满足 f(x) >= k 的所有 x 中, 最小的一个就是我们要的结果
+     *
+     * 时间复杂度：lg(m*n) * (m+n)
+     * 同 378 很像
+     * 数据类型类似 240（完全不同的解法，稍微利用了共同的性质）
      */
     public int findKthNumber(int m, int n, int k) {
-        return 0;
+        if (m < 1 || n < 1)
+            throw new IllegalArgumentException("invalid param!");
+
+        int min = 1, max = m*n;
+        while (min < max) {
+            // 天然向下取整
+            int mid = (min + max) / 2;
+            int count = countLessThanAndEqual(m, n, mid);
+
+            if (count >= k) {
+                max = mid;
+            } else {
+                // 一旦 mid 满足了 count >= k, min 就不会再变了
+                // 而 mid 这个值一定恰好再乘法表中
+                min = mid + 1;
+            }
+        }
+        return min;
+    }
+
+    /**
+     * @param m 表行
+     * @param n 表列
+     * @param x x
+     * @return 对于任意的 x 属于 [min, max], 计算小于等于 x 的值的数量
+     */
+    private int countLessThanAndEqual(int m, int n, int x) {
+        int count = 0;
+        for (int i = 1, j = n; i <= m; i++) {
+            // j 左移
+            while (j >= 1 && i*j > x)
+                j--;
+            count += j;
+        }
+        return count;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -46,6 +46,7 @@
 class SolutionOffer16 {
     /**
      * 斐波那契数列中矩阵快速幂的基础
+     * 相同题：50
      */
     public double myPow(double x, int n) {
         // 注意最小的负数 n = -2147483648;

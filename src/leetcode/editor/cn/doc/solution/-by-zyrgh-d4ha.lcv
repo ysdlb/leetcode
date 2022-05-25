@@ -1,0 +1,24 @@
+# 解题思路
+
+1. 不使用乘法,可以使用加法
+2. 根据数学,a * b = a 个 b相加的结果
+
+* 
+
+```
+ public int multiply(int A, int B) {
+    if (A == 0 || B == 0){
+        return 0;
+    }
+    if (B == 1){
+        return A;
+    }
+    if (A == 1){
+        return B;
+    }
+    return multiply(A,B-1)+A;
+}
+```
+
+执行用时:0ms,战胜100.0%
+消耗内存:37.8MB,战胜95.2%

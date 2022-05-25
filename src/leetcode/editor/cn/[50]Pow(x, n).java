@@ -40,6 +40,9 @@
 class Solution50 {
     /**
      * 快速幂, 类似题目: 372, 509
+     *
+     * 相同题目：Offer16
+     * 类似题：面试题 08.05
      */
     public double myPow(double x, int n) {
         if (n < 0) {

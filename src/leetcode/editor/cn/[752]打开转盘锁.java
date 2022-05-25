@@ -65,6 +65,7 @@ class Solution752 {
      * 其实是求最短路, 但是由于每步的 cost 都一样, 所以 BFS 层级就是它的总开销
      *
      * 接发类似题：773
+     * 相似题目: 433: 最小基因变化
      */
     public int openLock(String[] deadends, String target) {
         Set<String> deadSet = Arrays.stream(deadends).collect(Collectors.toSet());

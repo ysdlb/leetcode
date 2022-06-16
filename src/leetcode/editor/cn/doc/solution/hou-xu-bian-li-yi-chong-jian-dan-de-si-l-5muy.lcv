@@ -1,0 +1,99 @@
+💡写在前面：致力于写出最好理解的题解。
+
+# 解题思路
+
+对于**被删除节点类型**，可以分情况进行分析：
+- 叶子节点：直接删掉
+- 非叶子节点：如果左右子树不为空，就加入结果集。
+
+为了得到这个结果集，**每个结点需要做什么？**
+- 每个结点要知道自己是否需要被删掉，如果需要被删掉，那么就根据情况执行上一步的分析。
+
+**在什么时候做这些事？**
+
+如果一个结点需要被删掉，那么应该将它与父节点的关系进行**移除**，所以我们需要：判断完结点是否需要被删除后，告知他的**父节点**进行相应的**指针操作**。
+
+那么不妨采用**后序遍历**的方式。
+
+**定义一个删除函数**
+
+* java
+
+```java
+/**
+* 定义：
+* 删除以node为根的树中，结点值出现在delete中的结点,更新结果集list，并返回删除后新的根节点。
+*/
+TreeNode del(TreeNode node, Set<Integer> delete, List<TreeNode> list);
+```
+
+把上述思考过程直接翻译成代码：
+
+* java
+
+```java
+TreeNode del(TreeNode node, Set<Integer> delete, List<TreeNode> list){
+    if(node == null) return null; // base case
+    // 先递归左右子树
+    node.left = del(node.left, delete, list);
+    node.right = del(node.right, delete,list);
+        if(delete.contains(node.val)){ // 当node结点需要被删掉时,更新结果集
+        if(node.left != null){ 
+            list.add(node.left);
+        }
+        if(node.right != null){ 
+            list.add(node.right);
+        }
+        // 如果结果集里已经包含node为根的树，就把结果集里的node删掉
+        if(list.contains(node)){
+            list.remove(node);
+        }
+        // 将node置为null，等于删除掉了
+        return null;
+    }
+    return node;
+}
+```
+
+那么在执行`del()`方法前，我们需要做什么准备工作呢？
+- 构建一个 delete 集合
+- 将最初的根节点加入结果集，这么做的原因是：如果没有要删除的结点，那么del方法是不会将根节点加入结果集的，所以我们需要提前加入，并且在`del`方法中会维护指针索引，所以结果集中的树结构会保证正确。
+
+# 题解代码
+
+* []
+
+```java
+    public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        List<TreeNode> list = new LinkedList<>();
+        Set<Integer> set = new HashSet<>();
+        // 将delete转换为set方便进行判断
+        for(int num : to_delete){
+            set.add(num);
+        }
+        // 如果什么都不需要删掉，那么结果集中应该包含原本这棵树
+        list.add(root);
+        del(root, set, list);
+        return list;
+    }
+
+    TreeNode del(TreeNode node, Set<Integer> delete, List<TreeNode> list){
+        if(node == null) return null;
+        node.left = del(node.left, delete, list);
+        node.right = del(node.right, delete,list);
+        if(delete.contains(node.val)){
+            if(node.left != null){
+                list.add(node.left);
+            }
+            if(node.right != null){
+                list.add(node.right);
+            }
+            if(list.contains(node)){
+                list.remove(node);
+            }
+            return null;
+        }
+        return node;
+    }
+```
+

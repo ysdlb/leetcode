@@ -52,6 +52,10 @@ class NumArray {
 
     private final int[] nums;
 
+    /**
+     * 二维前缀和: 304
+     * 类似题目不通解法: 307
+     */
     public NumArray(int[] nums) {
         for (int i = 1; i < nums.length; i++) {
             nums[i] += nums[i-1];

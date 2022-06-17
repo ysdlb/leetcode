@@ -53,7 +53,8 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class NumMatrix {
     /**
-     * 前缀和, 参考 303
+     * 一维前缀和: 303
+     * 类似题目不通解法: 307
      */
     private final int[][] matrixP;
     public NumMatrix(int[][] matrix) {

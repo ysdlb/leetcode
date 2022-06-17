@@ -58,6 +58,7 @@ class NumArray307 {
     /**
      * 树状数组实现线段树
      * 类似题不同解法：303，304
+     * 参考视频: https://www.bilibili.com/video/BV1cb411t7AM?spm_id_from=333.999.0.0&vd_source=0d1fbb2cf5c5aa0481227bd9f73b3a3a
      */
     public NumArray307(int[] nums) {
         if (nums == null || nums.length == 0)

@@ -41,6 +41,7 @@ class SolutionOffer42 {
      * 返回值： 返回 dp 列表中的最大值，代表全局最大值。
      *
      * 实用参考 124
+     * 经典 DP: 152, 343
      */
     public int maxSubArray(int[] nums) {
         int[] dp = new int[nums.length];

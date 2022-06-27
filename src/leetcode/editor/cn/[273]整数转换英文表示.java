@@ -58,6 +58,7 @@ class Solution273 {
      * 1000, 100 这些的 0 处理比较难
      * 0 有时候需要打印, 有时候不需要打印
      * 重在分类讨论
+     * 类似题: 12
      */
     public String numberToWords(int num) {
         StringBuilder builder = new StringBuilder();

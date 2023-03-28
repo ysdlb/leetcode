@@ -71,7 +71,7 @@ class Solution2407 {
      * <p></p>
      * 时间复杂度 o(n^2)
      */
-    public int lengthof_LIS(int[] nums, int k) {
+    public int lengthOf_LIS(int[] nums, int k) {
         if (nums == null || nums.length == 0)
             return 0;
 
@@ -109,9 +109,11 @@ class Solution2407 {
      * <p></p>
      * 树状数组前缀和、前缀最大值以及区间和都比较好求：
      * 但区间最大值比较难求：
-     *   1. 求最大值的时候，超过区间范围的树状数组元素不应当被讨论，此时元素索引应当下沉一个层级
+     *  1. 若 c[i] 管辖的数据范围超过区间的范围大小，则这个 c[i] 元素不能用来求最大值。
+     *  2. 此时树状数组需要下沉，值 a[i] 将参与最大值的比较。
+     *  3. 求最大的值的过程中，超过区间范围大小的 c 元素永远不会用到，所以我们在更新的过程中，更新与否不重要。
      */
-    public int lengthof_BIT(int[] nums, int k) {
+    public int lengthOfLIS_BIT(int[] nums, int k) {
         if (nums == null || nums.length == 0)
             return 0;
 
@@ -136,15 +138,13 @@ class Solution2407 {
      * 	2. 此时树状数组需要下沉，值 a[i] 将参与最大值的比较。
      */
     public int query(int[] tree, int[] dp, int l, int r) {
-        int lowBit = r & -r;
         int max = 0;
         while (l <= r) {
             // 这一步放在 for 循环后面，会导致死循环
             max = Math.max(max, dp[r]);
             r--;
-            for (; r - lowBit >= l; r -= lowBit) {
+            for (; r - (r&-r) >= l; r -= (r&-r)) {
                 max = Math.max(max, tree[r]);
-                lowBit = r & -r;
             }
         }
         return max;
@@ -159,8 +159,10 @@ class Solution2407 {
 
     public static void main(String[] args) {
         Solution2407 solution = new Solution2407();
-        int[] a = new int[]{4, 2, 1, 4, 3, 4, 5, 8, 15};
-        System.out.println(solution.lengthof_BIT(a, 3));
+//        int[] a = new int[]{4, 2, 1, 4, 3, 4, 5, 8, 15};
+//        System.out.println(solution.lengthOfLIS_BIT(a, 3));
+        int[] a = new int[]{14,20,3,10,14,20,9}; //expect 3
+        System.out.println(solution.lengthOfLIS_BIT(a, 6));
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -27,11 +27,13 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+// https://leetcode.cn/problems/shortest-common-supersequence/
 class Solution1092 {
 
     /*
      * 类似题目:
-     *   [1092]最短公共超序列
+     *   [1142]最长公共子序列
      *
      * 最短公共超序列其实就是最长公共子序列的路径
      *

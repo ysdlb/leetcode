@@ -66,7 +66,15 @@ import java.util.Deque;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution239 {
 
-    /**
+    /*
+     * 单调队列: https://oi-wiki.org/ds/monotonous-queue/
+     *   LC84. Largest Rectangle in Histogram
+     *   LC239. Sliding Window Maximum
+     *   LC739. Daily Temperatures
+     *   LC862. Shortest Subarray with Sum at Least K
+     *   LC901. Online Stock Span
+     *   LC907. Sum of Subarray Minimums
+     *
      * 窗口右移一位, 则会移除一个左边元素, 新增一个右边元素
      * 若移除的不是当时窗口的最大值, 则对当时窗口毫无影响, 因为当时最大值不变
      * 若新增对不是当前窗口对最大值, 则也对当前窗口无影响, 因为当前最大值不变

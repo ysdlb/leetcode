@@ -53,6 +53,8 @@ class Solution452 {
     /* 用最少数量的箭引爆气球: https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/
      * 相似题:
      *   435.无重叠区间: https://leetcode.cn/problems/non-overlapping-intervals/
+     * 同排序方案:
+     *   56.合并区间: https://leetcode-cn.com/problems/merge-intervals/
      *
      * 思路:
      * 跟合并区间在相交的时候扩张右边界不同

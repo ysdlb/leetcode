@@ -33,18 +33,29 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * 同
  * <a href="https://leetcode-cn.com/problems/remove-covered-intervals/">leetcode-1288</a>
  *
- * <p>
- * <a href="https://leetcode-cn.com/problems/merge-intervals/">leetcode-56</a>
  */
 class Solution56 {
 
-    /**
+    /* 合并区间: https://leetcode-cn.com/problems/merge-intervals/
+     * 几乎相同
+     *   1288.被删除的覆盖区间: https://leetcode.cn/problems/remove-covered-intervals/
+     * 相似题:
+     *   986.区间列表的交集: https://leetcode.cn/problems/interval-list-intersections/
+     *  最小区间数量:
+     *   1024.视频拼接: https://leetcode.cn/problems/video-stitching/
+     *
+     * 困难，区间带权重
+     *   1235.规划兼职工作: https://leetcode.cn/problems/maximum-profit-in-job-scheduling/
+     *
+     * 目的: 合并所有重叠区间，返回不重复的区间数组
+     * 思路:
      * 按左边界升序排, 右边界降序排列
      * 最终效果
      * ----------
@@ -54,35 +65,37 @@ class Solution56 {
      *   -----------
      *                ------
      *
-     * 当区间被虚拟区间完全覆盖时候, 被覆盖区间数量加一
-     * 当区间与虚拟区间相交时, 扩展虚拟区间的右边界
-     * 当区间与虚拟区间完全不想交时, 右移虚拟区间左边界, 扩展右边界
+     * 当前区间与前一个区间相比总有三种情况:
+     *   1. 区间被前一个区间完全覆盖: 丢弃当前区间
+     *   2. 区间与前一个区间相交: 扩展前一个区间的右边界
+     *   3. 区间与前一个区间完全不相交: 将当前区间作为新的区间加入, 作为新的"前一个区间"
      * 时间复杂度 O(n*lgn)
      */
     public int[][] merge(int[][] intervals) {
         if (intervals.length < 1)
             throw new RuntimeException("argv error");
-        // 同 1288 题
+        // 左边界正序、右边界倒序排列
         Arrays.sort(intervals, (n1, n2) -> {
             if (n1[0] == n2[0])
                 return n2[1] - n1[1];
             return n1[0] - n2[0];
         });
 
-        int[][] ret = new int[intervals.length][];
-        int index = -1;
+        LinkedList<int[]> ret = new LinkedList<>();
+        ret.add(intervals[0]);
         // 最左中最大的区间
-        ret[++index] = intervals[0];
         for (int i = 1; i < intervals.length; i++) {
             int[] interval = intervals[i];
-            if (ret[index][1] >= interval[1]) // 覆盖, 舍弃
+            if (ret.getLast()[1] >= interval[1]) // 覆盖, 舍弃
                 continue;
-            else if (ret[index][1] >= interval[0]) // 相交, 合并
-                ret[index][1] = interval[1];
-            else  // 完全不想交, right < interval[0]
-                ret[++index] = interval;
+
+            // 前提: "前一个区间"的右边界小于当前区间的右边界 (相交/完全不相交)
+            if (ret.getLast()[1] >= interval[0]) // 相交, 合并
+                ret.getLast()[1] = interval[1];
+            else  // 完全不相交, 作为新的"前一个区间" right < interval[0]
+                ret.add(interval);
         }
-        return Arrays.copyOf(ret, index+1);
+        return ret.toArray(int[][]::new);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

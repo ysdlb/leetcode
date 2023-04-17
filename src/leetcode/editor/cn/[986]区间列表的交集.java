@@ -59,45 +59,29 @@ import java.util.Comparator;
 import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * 同
- * <a href="https://leetcode-cn.com/problems/remove-covered-intervals/">leetcode-1288</a>
- * <a href="https://leetcode-cn.com/problems/merge-intervals/">leetcode-56</a>
- *
- * <a href="https://leetcode-cn.com/problems/interval-list-intersections/">leetcode-986</a>
- */
 class Solution986 {
 
 
-    /**
-     * 按左边界升序排, 右边界降序排列
-     * 最终效果
-     * ----------
-     * ------
-     * ----
-     *  ---
-     *   -----------
-     *                ------
-     * 题目保证了不想交, 我们就没有必要合并了
-     * 最终效果只能是
-     * ------
-     *         -----
-     *                -----------
+    /* 区间列表的交集: https://leetcode.cn/problems/interval-list-intersections/
+     * 相似题:
+     *   56.合并区间: https://leetcode-cn.com/problems/merge-intervals/
+     *   1288.被删除的覆盖区间: https://leetcode.cn/problems/remove-covered-intervals/
+     *  最小区间数量:
+     *   1024.视频拼接: https://leetcode.cn/problems/video-stitching/
+     * 困难，区间带权重
+     *   1235.规划兼职工作: https://leetcode.cn/problems/maximum-profit-in-job-scheduling/
+     *
+     * 题目保证了不相交, 我们就没有必要按左升右降排序了
      * 1. first 的右边和 second 的左边相交, 记录相交区间, first 移动到下一个元素
      * 2. first 的左边和 second 的右边相交, 记录相交区间, second 移动到下一个元素
+     *
      * 3.4. 它俩存在覆盖关系, 记录相交区间, 偏左的移动到下一个元素
      * 这四种情况左边界求最大值 maxL, 右边界求最小值 minR, 只要 maxL <= minR, 就是一个有效相交区间
      * 5. 完全不相交, 偏左的移动到下一个元素
+     *
+     * 我们每次只移动 firstList, secondList 中的一个区间，共需要移动两个列表️之和次
      */
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
-//        Comparator<int[]> comparator = (n1, n2) -> {
-//            if (n1[0] == n2[0])
-//                return n2[1] - n2[0];
-//            return n1[0] - n2[0];
-//        };
-//        Arrays.sort(firstList, comparator);
-//        Arrays.sort(secondList, comparator);
-
         List<int[]> ret = new ArrayList<>();
         for (int i = 0, j = 0; i < firstList.length && j < secondList.length;) {
             int[] intervalI = firstList[i], intervalJ = secondList[j];
@@ -105,6 +89,8 @@ class Solution986 {
             int minR = Math.min(intervalI[1], intervalJ[1]);
             if (maxL <= minR)
                 ret.add(new int[]{maxL, minR});
+
+            // 小区间往前走，继续和大区间取交集
             if (intervalI[1] < intervalJ[1])
                 i++;
             else

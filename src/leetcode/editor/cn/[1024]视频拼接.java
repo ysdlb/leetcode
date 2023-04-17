@@ -61,14 +61,34 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1024 {
-    /**
+    /* 视频拼接: https://leetcode.cn/problems/video-stitching/
+     * 相似题:
+     *   56.合并区间: https://leetcode-cn.com/problems/merge-intervals/
+     *   1288.被删除的覆盖区间: https://leetcode.cn/problems/remove-covered-intervals/
+     *   986.区间列表的交集: https://leetcode.cn/problems/interval-list-intersections/
+     * 困难，区间带权重
+     *   1235.规划兼职工作: https://leetcode.cn/problems/maximum-profit-in-job-scheduling/
+     *
      * 合并所需最少区间
      * 关注指定边界的下面所有边界的最右边界
      *
      * 区间按照起点升序，终点降序
      * 那么从前到后的区间, 只有覆盖, 相交, 完全不相交三种情况
-     * 去掉覆盖的, 保证没有完全不想交的情况
-     * 尽可能利用相交区间（所有相交区间里取右边界最右的)
+     *
+     * 贪心思路:
+     * 在保证没有完全不想交的情况
+     *   尽可能利用相交区间（所有相交区间里取右边界最右的)
+     * 时间复杂度为 O(n*lgN)
+     *
+     * 留存两种思路
+     *   1. dp[time]   O(time*n)
+     *   2. 贪心预处理   O(time+n)
+     * 由于 time 固定且范围不大，可以不用排序，
+     * 用差不多类似基数排序的思想，预处理下 clips 同左边界下的最右边界
+     * [0,0] 找到最右边界 n1
+     * ==> (0,n1] 找到最右边界 n2
+     * ==> (n1,n2] 找到最右边界 n3
+     * 依次类推
      */
     public int videoStitching(int[][] clips, int time) {
         Arrays.sort(clips, (n1, n2) -> {
@@ -77,22 +97,24 @@ class Solution1024 {
             return n1[0] - n2[0];
         });
 
+        // 确保 left 从 0 开始
         if (clips[0][0] != 0)
             return -1;
 
         int ret = 0;
-        int left = 0, right = 0, nextRight = 0;
+        int right = 0, nextRight = 0;
         for (int i = 0; i < clips.length;) {
             // 一旦出现完全不相交, 返回 -1
             if (right < clips[i][0])
                 break;
+            // 找到 right 下面的最右边界
             while (i < clips.length && right >= clips[i][0]) { // 相交 可以和覆盖一起处理
                 nextRight = Math.max(nextRight, clips[i][1]);
                 i++;
             }
             ret++;
             right = nextRight;
-            if (right - left >= time)
+            if (right >= time)
                 return ret;
         }
         return -1;

@@ -41,11 +41,19 @@
 
 import java.util.Arrays;
 
-//leetcode submit region begin(Prohibit modification and deletion)
 class Solution435 {
-    /**
+    /* 无重叠区间: https://leetcode.cn/problems/non-overlapping-intervals/
+     * 相似题:
+     *   452.用最少数量的箭引爆气球: https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/
+     *  同排序方案:
+     *   56.合并区间: https://leetcode-cn.com/problems/merge-intervals/
+     *
+     * 题目要求重叠了多少区间
      * 同 452 求重叠后区间, 区别是紧挨着不算相交
-     * 然后总区间减去重叠后区间就是目标值
+     * 然后总区间减去重叠后区间就是目标值 (它等价于最多有多少不重叠区间)
+     *
+     * 留存:
+     * 直接求最多有多少个不重叠区间
      */
     public int eraseOverlapIntervals(int[][] intervals) {
         if (intervals.length == 0) return 0;

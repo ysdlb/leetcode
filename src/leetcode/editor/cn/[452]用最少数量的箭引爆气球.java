@@ -50,7 +50,11 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution452 {
-    /**
+    /* 用最少数量的箭引爆气球: https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/
+     * 相似题:
+     *   435.无重叠区间: https://leetcode.cn/problems/non-overlapping-intervals/
+     *
+     * 思路:
      * 跟合并区间在相交的时候扩张右边界不同
      * 参考 56, 435
      *
@@ -61,6 +65,10 @@ class Solution452 {
      *         [10, 16]
      * 1. 如果完全和 [maxL, minR] 不相交, 则新建区间
      * 2. 如果有相交同时收缩左右边界 [maxL, minR]
+     *
+     * 留存:
+     * 求最少有多少个重叠后小区间可串联全部 等价于 求最多有多少个不重叠区间
+     * 用 end 排序，可直接求最多有多少个不重叠区间
      */
     public int findMinArrowShots(int[][] points) {
         if (points.length == 0) return 0;

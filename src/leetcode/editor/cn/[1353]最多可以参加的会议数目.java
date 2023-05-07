@@ -49,7 +49,7 @@ import java.util.PriorityQueue;
 class Solution1353 {
     /* 最多可以参加的会议数目: https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/
      * 同类型题目:
-     *   1705. 吃苹果的最大数目
+     *   1705. 吃苹果的最大数目: https://leetcode.cn/problems/maximum-number-of-eaten-apples/
      * 相似描述题目:
      *   1751.最多可以参加的会议数目 II: https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/
      *

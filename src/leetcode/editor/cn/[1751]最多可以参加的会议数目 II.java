@@ -56,6 +56,8 @@ import java.util.Comparator;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1751 {
     /* 最多可以参加的会议数目 II: https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended-ii/
+     * 相似题:
+     *   1353.最多可以参加的会议数目: https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/
      * 同题目:
      *   1235.规划兼职工作: https://leetcode.cn/problems/maximum-profit-in-job-scheduling/
      *   2008.出租车的最大盈利: https://leetcode.cn/problems/maximum-earnings-from-taxi/

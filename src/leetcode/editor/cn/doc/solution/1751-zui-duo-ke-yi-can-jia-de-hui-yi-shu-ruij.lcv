@@ -1,0 +1,251 @@
+# 解法
+
+## 思路和算法
+
+由于参加的所有会议的时间不能重叠，因此应按时间顺序遍历所有会议。
+
+将数组 $\textit{events}$ 按结束日期升序排序。遍历排序后的数组时，对于遍历到的每个会议，结束日期更早的会议都已经遍历过。
+
+用 $n$ 表示会议的数量。在最多参加 $k$ 个会议的情况下，为了计算参加的所有会议的最大价值和，对于 $0 \le i < n$ 和 $0 \le j \le k$，当遍历到第 $i$ 个会议时，应计算在前 $i + 1$ 个会议（即第 $0$ 个会议到第 $i$ 个会议）中最多参加 $j$ 个会议的最大价值和，此时第 $i$ 个会议可以参加或不参加。如果参加第 $i$ 个会议，则对于任意 $\textit{prev} < i$，只有当 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 时才能参加第 $j$ 个会议，此时参加第 $i$ 个会议一定不会和前 $j + 1$ 个会议的时间重叠。可以使用动态规划计算参加的所有会议的最大价值和。
+
+创建 $(n + 1) \times (k + 1)$ 的二维数组 $\textit{dp}$，其中 $\textit{dp}[i][j]$ 为前 $i$ 个会议中最多参加 $j$ 个会议的最大价值和。二维数组 $\textit{dp}$ 满足：当一个维度的下标固定时，另一个维度上的值为非严格单调递增，理由如下。
+
+1. 对于 $0 \le i < n$ 和 $0 \le j \le k$，计算 $\textit{dp}[i + 1][j]$ 时如果不参加第 $i$ 个会议则最大价值和为 $\textit{dp}[i][j]$，因此 $\textit{dp}[i + 1][j] \ge \textit{dp}[i][j]$，即对于每个 $j$，$\textit{dp}[][j]$ 为非严格单调递增。
+
+2. 对于 $0 \le i < n$ 和 $0 < j \le k$，计算 $\textit{dp}[i][j]$ 时前 $i$ 个会议中最多参加 $j$ 个会议，可以在前 $i$ 个会议中参加不超过 $j - 1$ 个会议，因此 $\textit{dp}[i][j] \ge \textit{dp}[i][j - 1]$，即对于每个 $i$，$\textit{dp}[i][]$ 为非严格单调递增。
+
+如果没有任何可以参加的会议，或者最多可以参加的会议数目为零，则价值和为零。因此动态规划的边界情况是：对于任意 $0 \le j \le k$，$\textit{dp}[0][j] = 0$；对于任意 $0 \le i \le n$，$\textit{dp}[i][0] = 0$。特别地，$\textit{dp}[0][0] = 0$。
+
+对于 $0 \le i < n$，当遍历到第 $i$ 个会议时，对于 $1 \le j \le k$ 的每个 $j$，需要计算 $\textit{dp}[i + 1][j]$。可能有以下两种情况。
+
+- 如果不参加第 $i$ 个会议，则前 $i + 1$ 个会议中最多参加 $j$ 个会议的最大价值和等于前 $i$ 个会议中最多参加 $j$ 个会议的最大价值和，此时最大价值和是 $\textit{dp}[i][j]$。
+
+- 如果参加第 $i$ 个会议，则在参加第 $i$ 个会议之前最多参加 $j - 1$ 个会议，由于当 $j$ 确定时 $\textit{dp}[][j - 1]$ 单调递增，为了使前 $i + 1$ 个会议的的价值和最大化，应找到满足 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 的最大下标 $\textit{prev}$，如果不存在满足 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 的下标 $\textit{prev}$ 则 $\textit{prev} = -1$，此时的前 $i + 1$ 个会议的最大价值和是 $\textit{dp}[\textit{prev} + 1][j - 1] + \textit{events}[i][2]$。
+
+因此动态规划的状态转移方程是：对于满足 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 的最大下标 $\textit{prev}$（如果不存在满足该条件的下标 $\textit{prev}$ 则 $\textit{prev} = -1$），$\textit{dp}[i + 1][j] = \max(\textit{dp}[i][j], \textit{dp}[\textit{prev} + 1][j - 1] + \textit{events}[i][2])$。
+
+寻找满足 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 的最大下标 $\textit{prev}$ 时，如果遍历小于 $i$ 的每个下标寻找下标 $\textit{prev}$ 则需要 $O(n)$ 的时间，动态规划的每个下标 $i$ 处的状态的计算时间是 $O(n + k)$，时间复杂度是 $O(n^2 + nk)$，该时间复杂度过高，需要优化。由于数组 $\textit{events}$ 按结束日期升序排序，因此可以使用二分查找寻找下标 $\textit{prev}$，将动态规划的每个下标 $i$ 处的状态的计算时间降低到 $O(\log n + k)$，时间复杂度降低到 $O(n \log n + nk)$。
+
+用 $\textit{low}$ 和 $\textit{high}$ 分别表示二分查找的下界和上界。初始时 $\textit{low} = -1$，$\textit{high} = i - 1$。每次查找时，取 $\textit{mid}$ 为 $\textit{low}$ 和 $\textit{high}$ 的平均数向上取整，比较 $\textit{events}[\textit{mid}][1]$ 和 $\textit{events}[i][0]$，执行如下操作。
+
+- 如果 $\textit{events}[\textit{mid}][1] \le \textit{events}[i][0]$，则 $\textit{prev} \ge \textit{mid}$，因此在 $[\textit{mid}, \textit{high}]$ 中继续查找。
+
+- 如果 $\textit{events}[\textit{mid}][1] > \textit{events}[i][0]$，则 $\textit{prev} < \textit{mid}$，因此在 $[\textit{low}, \textit{mid} - 1]$ 中继续查找。
+
+当 $\textit{low} = \textit{high}$ 时，查找结束，此时 $\textit{low}$ 即为满足 $\textit{events}[\textit{prev}][1] \le \textit{events}[i][0]$ 的最大下标 $\textit{prev}$。
+
+根据动态规划的状态转移方程，计算 $\textit{dp}[i][j]$ 的顺序为从小到大遍历每个 $i$。计算得到 $\textit{dp}[n][k]$ 即为参加的所有会议的最大价值和。
+
+## 代码
+
+* [sol1-Java]
+
+```Java
+class Solution {
+    public int maxValue(int[][] events, int k) {
+        Arrays.sort(events, (a, b) -> a[1] - b[1]);
+        int n = events.length;
+        int[][] dp = new int[n + 1][k + 1];
+        for (int i = 0; i < n; i++) {
+            int prev = binarySearch(events, events[i][0], i - 1);
+            for (int j = 1; j <= k; j++) {
+                dp[i + 1][j] = Math.max(dp[i][j], dp[prev + 1][j - 1] + events[i][2]);
+            }
+        }
+        return dp[n][k];
+    }
+
+    public int binarySearch(int[][] events, int maxEndDay, int high) {
+        int low = -1;
+        while (low < high) {
+            int mid = low + (high - low + 1) / 2;
+            if (events[mid][1] < maxEndDay) {
+                low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
+```
+
+* [sol1-C#]
+
+```C#
+public class Solution {
+    public int MaxValue(int[][] events, int k) {
+        Array.Sort(events, (a, b) => a[1] - b[1]);
+        int n = events.Length;
+        int[][] dp = new int[n + 1][];
+        for (int i = 0; i <= n; i++) {
+            dp[i] = new int[k + 1];
+        }
+        for (int i = 0; i < n; i++) {
+            int prev = BinarySearch(events, events[i][0], i - 1);
+            for (int j = 1; j <= k; j++) {
+                dp[i + 1][j] = Math.Max(dp[i][j], dp[prev + 1][j - 1] + events[i][2]);
+            }
+        }
+        return dp[n][k];
+    }
+
+    public int BinarySearch(int[][] events, int maxEndDay, int high) {
+        int low = -1;
+        while (low < high) {
+            int mid = low + (high - low + 1) / 2;
+            if (events[mid][1] < maxEndDay) {
+                low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
+```
+
+## 复杂度分析
+
+- 时间复杂度：$O(n \log n + nk)$，其中 $n$ 是数组 $\textit{events}$ 的长度，$k$ 是最多可以参加的会议数目。排序需要 $O(n \log n)$ 的时间，动态规划的状态数是 $O(nk)$，每个状态的计算时间是 $O(\log n)$，因此时间复杂度是 $O(nk \log n)$。
+
+- 空间复杂度：$O(nk)$，其中 $n$ 是数组 $\textit{events}$ 的长度，$k$ 是最多可以参加的会议数目。由于待排序数组的元素是数组，因此排序需要 $O(n)$ 的空间，动态规划需要创建大小为 $(n + 1) \times (k + 1)$ 的二维数组 $\textit{dp}$。
+
+# 拓展问题
+
+## 问题描述
+
+原始问题只有计算参加的所有会议的最大价值和，在原始问题的基础上，可以提出拓展问题：当参加的所有会议的时间不重叠且价值和最大时，应该参加哪些会议，即参加的每个会议的开始日期、结束日期和价值分别是多少？如果有多种方案，返回其中任意一种。
+
+## 解法分析
+
+动态规划的计算过程为下标递增的顺序，根据动态规划的状态值，可以按下标递减的顺序依次计算参加的所有会议的下标。
+
+创建 $n \times (k + 1)$ 的二维数组 $\textit{prevIndices}$，其中 $\textit{prevIndices}[i][j]$ 表示到第 $i$ 个会议时最多参加 $j$ 个会议的情况下，第 $i$ 个会议前面最近会议的下标，使用 $\textit{maxEndIndex}$ 表示价值和最大时参加的最后一个会议的下标。初始时 $\textit{prevIndices}$ 中的所有元素都是 $-1$，$\textit{maxEndIndex} = 0$。
+
+对于 $0 \le i \le n$ 和 $1 \le j \le k$，计算 $\textit{dp}[i + 1][j]$ 的过程中，得到满足 $\textit{events}[\textit{prev}[1] \le \textit{events}[i][0]$ 的最大下标 $\textit{prev}$ 之后，执行如下操作。
+
+- 如果 $\textit{dp}[\textit{prev} + 1][j - 1] + \textit{events}[i][2] > \textit{dp}[i][j]$，则参加第 $i$ 个会议，此时 $\textit{dp}[i + 1][j] = \textit{dp}[\textit{prev} + 1][j - 1] + \textit{events}[i][2]$，$\textit{prevIndices}[i][j] = \textit{prev}$。
+
+- 如果 $\textit{dp}[\textit{prev} + 1][j - 1] + \textit{events}[i][2] \le \textit{dp}[i][j]$，则不参加第 $i$ 个会议，此时 $\textit{dp}[i + 1][j] = \textit{dp}[i][j]$，$\textit{prevIndices}[i][j] = -1$。
+
+动态规划计算结束之后，反向遍历参加的所有会议的下标。用 $\textit{index}$ 表示当前下标，用 $\textit{count}$ 表示剩余最多可以参加的会议数目，初始时 $\textit{index} = \textit{maxEndIndex}$，$\textit{count} = k$。计算参加的所有会议的下标的做法如下：当 $\textit{index} \ge 0$ 且 $\textit{count} > 0$ 时，参加第 $\textit{index}$ 个会议，将 $\textit{events}[\textit{index}]$ 添加到参加的会议列表中，然后将 $\textit{index}$ 更新为 $\textit{prevIndices}[\textit{index}][\textit{count}]$，将 $\textit{count}$ 减 $1$，重复该操作直到 $\textit{index} < 0$ 或 $\textit{count} = 0$。
+
+得到参加的所有会议列表之后，将列表反转即可得到按排序顺序参加的所有会议。
+
+## 代码
+
+下面的代码中，返回值是一个列表，列表中的每个元素是长度为 $3$ 的数组，为参加的每个会议的开始日期、结束日期和价值。
+
+* [sol2-Java]
+
+```Java
+class Solution {
+    public List<int[]> maxValue(int[][] events, int k) {
+        Arrays.sort(events, (a, b) -> a[1] - b[1]);
+        int n = events.length;
+        int[][] dp = new int[n + 1][k + 1];
+        int[][] prevIndices = new int[n][k + 1];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(prevIndices[i], -1);
+        }
+        int maxEndIndex = 0;
+        for (int i = 0; i < n; i++) {
+            int prev = binarySearch(events, events[i][0], i - 1);
+            for (int j = 1; j <= k; j++) {
+                if (dp[prev + 1][j - 1] + events[i][2] > dp[i][j]) {
+                    dp[i + 1][j] = dp[prev + 1][j - 1] + events[i][2];
+                    prevIndices[i][j] = prev;
+                    maxEndIndex = i;
+                } else {
+                    dp[i + 1][j] = dp[i][j];
+                }
+            }
+        }
+        List<int[]> selected = new ArrayList<int[]>();
+        int index = maxEndIndex, count = k;
+        while (index >= 0 && count > 0) {
+            selected.add(events[index]);
+            index = prevIndices[index][count];
+            count--;
+        }
+        Collections.reverse(selected);
+        return selected;
+    }
+
+    public int binarySearch(int[][] events, int maxEndDay, int high) {
+        int low = -1;
+        while (low < high) {
+            int mid = low + (high - low + 1) / 2;
+            if (events[mid][1] < maxEndDay) {
+                low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
+```
+
+* [sol2-C#]
+
+```C#
+public class Solution {
+    public IList<int> MaxValue(int[][] events, int k) {
+        Array.Sort(events, (a, b) => a[1] - b[1]);
+        int n = events.Length;
+        int[][] dp = new int[n + 1][];
+        for (int i = 0; i <= n; i++) {
+            dp[i] = new int[k + 1];
+        }
+        int[][] prevIndices = new int[n][];
+        for (int i = 0; i < n; i++) {
+            prevIndices[i] = new int[k + 1];
+            Array.Fill(prevIndices[i], -1);
+        }
+        int maxEndIndex = 0;
+        for (int i = 0; i < n; i++) {
+            int prev = BinarySearch(events, events[i][0], i - 1);
+            for (int j = 1; j <= k; j++) {
+                if (dp[prev + 1][j - 1] + events[i][2] > dp[i][j]) {
+                    dp[i + 1][j] = dp[prev + 1][j - 1] + events[i][2];
+                    prevIndices[i][j] = prev;
+                    maxEndIndex = i;
+                } else {
+                    dp[i + 1][j] = dp[i][j];
+                }
+            }
+        }
+        IList<int[]> selected = new List<int[]>();
+        int index = maxEndIndex, count = k;
+        while (index >= 0 && count > 0) {
+            selected.Add(events[index]);
+            index = prevIndices[index][count];
+            count--;
+        }
+        ((List<int[]>) selected).Reverse();
+        return selected;
+    }
+
+    public int BinarySearch(int[][] events, int maxEndDay, int high) {
+        int low = -1;
+        while (low < high) {
+            int mid = low + (high - low + 1) / 2;
+            if (events[mid][1] < maxEndDay) {
+                low = mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+}
+```
+
+## 复杂度分析
+
+- 时间复杂度：$O(n \log n + nk)$，其中 $n$ 是数组 $\textit{events}$ 的长度，$k$ 是最多可以参加的会议数目。排序和动态规划的时间复杂度不变，计算参加的所有会议的时间是 $O(n)$，因此和原始问题的时间复杂度相同。
+
+- 空间复杂度：$O(nk)$，其中 $n$ 是数组 $\textit{events}$ 的长度，$k$ 是最多可以参加的会议数目。数组 $\textit{prevIndices}$ 需要 $O(nk)$ 的空间，因此和原始问题的空间复杂度相同。
+

@@ -33,15 +33,19 @@ import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution560 {
-    /**
+    /* 和为 K 的子数组: https://leetcode.cn/problems/subarray-sum-equals-k/
+     * 相似题目:
+     *  1.两数之和: https://leetcode.cn/problems/two-sum/
+     *  1010.和为 K 的子数组: https://leetcode.cn/problems/subarray-sum-equals-k/
+     *
      * 因为数组元素有正有负, 所以每个子数组都有可能符合条件
      * 子数组的数量量级为 n^2, 每个子数组求和的时间复杂度为 n, 暴力的时间复杂度为 O(n^2)
      * 其实因为数组可以累加, 所以子数组求和的平均时间复杂度为 O(1), 总的为 O(n^2)
      *
      * 前缀和可以使子数组求和的时间复杂度降低为 O(1), 总时间复杂度为 O(n^2)
-     * 对 [0...i] 的和 sum, 我们需要找出有几个 ji < i, [0...ji] 的 和 si, 符合 (sum - si = k --> si == sum - k
+     * 对 [0...i] 的和 sum, 我们需要找出有几个 j < i,
+     *   [0...j] 的 和 s, 符合 (sum - s = k --> s == sum - k
      * 边遍历边缓存, 边累积和可以了, 且不需要显式的前缀和
-     * 参考 两个数只和 1. <a herf="https://leetcode-cn.com/problems/two-sum">两数之和</a>
      * 前缀和参考 303, 304
      */
     public int subarraySum_v2(int[] nums, int k) {
@@ -59,7 +63,7 @@ class Solution560 {
     }
 
 
-    /**
+    /*
      * 因为数组元素有正有负, 所以每个子数组都有可能符合条件
      * 子数组的数量量级为 n^2, 每个子数组求和的时间复杂度为 n, 暴力的时间复杂度为 O(n^2)
      * 其实因为数组可以累加, 所以子数组求和的平均时间复杂度为 O(1), 总的为 O(n^2)

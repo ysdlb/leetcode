@@ -48,6 +48,13 @@ import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1 {
+    /* 两数之和: https://leetcode.cn/problems/two-sum/
+     * 难度提升题:
+     *  560.和为 K 的子数组: https://leetcode.cn/problems/subarray-sum-equals-k/
+     *  1010.和为 K 的子数组: https://leetcode.cn/problems/subarray-sum-equals-k/
+     *
+     * 最简单的两数和，但其变种稍微复杂并且很有意思
+     */
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i <nums.length; i++) {

@@ -48,7 +48,7 @@ class Solution2437 {
 
     /* 有效时间的数目:
      * 经典分类讨论, 一共四个数字，分别标记为 abcd
-     * a ==> [0-2]
+     * a ==> (b[0-3])[0-2]   (b[4-9])[0-1]
      * b ==> (a==0/1)[0-9]  (a==2)[0-3]
      * c ==> [0-5]
      * d ==> [0-9]
@@ -60,9 +60,10 @@ class Solution2437 {
 
         int count;
         if (a == '?' && b == '?') count = 24;
-        else if (a == '?') count = 3;
+        else if (a == '?' && '0'<=b&&b<='3') count = 3;
+        else if (a == '?' && '3'<b&&b<='9') count = 2;
         else if (b == '?' && (a == '0' || a == '1')) count = 10;
-        else if (b == '?' && a == '2') count = 10;
+        else if (b == '?' && a == '2') count = 4;
         else count = 1;
 
         if (c == '?') count *= 6;
@@ -73,7 +74,8 @@ class Solution2437 {
 
     public static void main(String[] args) {
         Solution2437 solution = new Solution2437();
-        int i = solution.countTime("??:??");
+        // int i = solution.countTime("2?:??");
+        int i = solution.countTime("?4:22");
         System.out.println(i);
     }
 }

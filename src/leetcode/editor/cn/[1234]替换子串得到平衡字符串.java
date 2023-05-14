@@ -63,7 +63,7 @@ import java.util.Arrays;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1234 {
 
-    /* 无重复字符的最长子串: https://leetcode.cn/problems/longest-substring-without-repeating-characters/
+    /* 1234.替换子串得到平衡字符串: https://leetcode.cn/problems/replace-the-substring-for-balanced-string/
      * 滑动窗口相似题目:
      *  2106.摘水果: https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/     * 字串, 不是子序列
      *

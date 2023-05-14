@@ -48,11 +48,15 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1003 {
-    /**
-     * 这个题可以反复遍历数组, 不断清楚连续的 abc 来做, 时间复杂度为 O(n)
+    /* 1003.检查替换后的词是否有效: https://leetcode.cn/problems/check-if-word-is-valid-after-substitutions/
+     *
+     * 这个题可以反复遍历数组, 不断清除连续的 abc 来做, 时间复杂度为 O(n)
      *
      * 这个串的特点就是 pattern 连续或者嵌套生成一个更大的 pattern
      * 对任意一个 pattern, 它的首字母肯定是 a, 然后可能嵌套若干个 pattern, 下一个字母是 b, 再嵌套若干个 pattern, 下一个字母是 c;
+     *
+     * 用栈更优雅，Java 可用 StringBuilder 来代替
+     * 当前用方法递归模拟了一个栈的效果
      *
      * 留存: 1. 是否有效括号的栈实现 2. 是否有效括号的计数实现
      * 类似题目：20，32；22；921，1541

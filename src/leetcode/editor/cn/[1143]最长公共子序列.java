@@ -52,9 +52,10 @@
  */
 class Solution1143 {
 
-    /*
+    /* 最长公共子序列: https://leetcode.cn/problems/longest-common-subsequence/
      * 类似题目:
-     *   [1092]最短公共超序列
+     *  1092.最短公共超序列: https://leetcode.cn/problems/shortest-common-supersequence/
+     *
      * 最典型的 LCS 问题
      * 设 f(i,j) 为 text1[0...i] 与 text2[0...j] 的最长公共子序列
      * 那么对于 text1[i] == text2[j], i,j 都可以添加进公共子序列里

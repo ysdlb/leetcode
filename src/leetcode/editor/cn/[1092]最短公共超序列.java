@@ -31,9 +31,9 @@
 // https://leetcode.cn/problems/shortest-common-supersequence/
 class Solution1092 {
 
-    /*
+    /* 最短公共超序列: https://leetcode.cn/problems/shortest-common-supersequence/
      * 类似题目:
-     *   [1142]最长公共子序列
+     *  1143.最长公共子序列: https://leetcode.cn/problems/longest-common-subsequence/
      *
      * 最短公共超序列其实就是最长公共子序列的路径
      *

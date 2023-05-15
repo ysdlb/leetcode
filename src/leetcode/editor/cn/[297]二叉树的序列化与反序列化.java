@@ -53,8 +53,11 @@
 import java.util.Arrays;
 import java.util.LinkedList;
 
-/**
- * 序列化相关参考：105, 106
+/*  297.二叉树的序列化与反序列化: https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/
+ * 序列化相似题目:
+ *  105.从前序与中序遍历序列构造二叉树: https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+ *  106.从中序与后序遍历序列构造二叉树: https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+ *  1028.从先序遍历还原二叉树: https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/
  */
 class Codec297 {
 

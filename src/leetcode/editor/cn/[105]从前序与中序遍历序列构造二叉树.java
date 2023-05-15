@@ -33,16 +33,23 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
+/*
  * 序列化相关参考：106, 297
  */
 class Solution105 {
+
+    /* 105.从前序与中序遍历序列构造二叉树: https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+     * 序列化相似题目:
+     *  106.从中序与后序遍历序列构造二叉树: https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+     *  297.二叉树的序列化与反序列化: https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/
+     *  1028.从先序遍历还原二叉树: https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0) return null;
         return build(preorder, 0, inorder, 0, preorder.length);
     }
 
-    /**
+    /*
      * 描述: 通过前序遍历和后续遍历数组构建二叉树
      *
      * 前序遍历的第一个节点即为当前数组的跟节点, 通过中序遍历可以找出根节点的左右子树在两种遍历数组中的长度即位置

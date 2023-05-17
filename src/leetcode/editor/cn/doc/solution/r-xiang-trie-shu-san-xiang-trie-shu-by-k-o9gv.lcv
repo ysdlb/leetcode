@@ -1,0 +1,76 @@
+**方法一：贪心 + 排序**
+
+![image.png](https://pic.leetcode.cn/1673264543-DOmTOV-image.png)
+
+* []
+
+```java
+class Solution {
+    public int twoCitySchedCost(int[][] costs) {
+        int n = costs.length / 2, min = 0;
+        Arrays.sort(costs, Comparator.comparingInt(a -> (a[0] - a[1])));
+        for (int i = n - 1; i >= 0; i--) {
+            min += costs[i][0] + costs[i + n][1];
+        }
+        return min;
+    }
+}
+```
+
+**复杂度分析**
+- 时间复杂度：`Array.sort` 方法排序引用数据类型使用的是归并排序，时间复杂度为 $O(n\log{n})$。
+- 空间复杂度：归并排序的空间复杂度为 $O(n)$。
+
+**方法二：贪心 + 快速选择**
+
+![image.png](https://pic.leetcode.cn/1673263418-wuYIoh-image.png)
+
+* []
+
+```java
+class Solution {
+    public int twoCitySchedCost(int[][] costs) {
+        int n = costs.length / 2, min = 0;
+        int lo = 0, hi = (n << 1) - 1;
+        while (lo < hi) {
+            int i = partition(costs, lo, hi);
+            if (i > n) hi = i - 1;
+            else if (i < n) lo = i + 1;
+            else break;
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            min += costs[i][0] + costs[i + n][1];
+        }
+        return min;
+    }
+
+    private int partition(int[][] costs, int lo, int hi) {
+        int i = lo;
+        int j = hi + 1;
+        int[] v = costs[lo];
+        while (true) {
+            while (less(costs[++i], v) && i != hi) ;
+            while (less(v, costs[--j])) ;
+            if (i >= j) break;
+            exch(costs, i, j);
+        }
+        exch(costs, lo, j);
+        return j;
+    }
+
+    private boolean less(int[] a, int[] b) {
+        return a[0] - a[1] < b[0] - b[1];
+    }
+
+    private void exch(int[][] costs, int i, int j) {
+        int[] swap = costs[i];
+        costs[i] = costs[j];
+        costs[j] = swap;
+    }
+}
+```
+
+**复杂度分析**
+- 时间复杂度：期望为 $O(n)$。
+- 空间复杂度：$O(1)$。
+

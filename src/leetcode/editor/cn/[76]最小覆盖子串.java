@@ -47,7 +47,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution76 {
     /**
      * need 数组表示 t 中所有字符以及字符的数量
      * find 数组表示 s 串窗口内找到的字符以及字符数量

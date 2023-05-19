@@ -42,6 +42,8 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution1017 {
     /* 负二进制转换: https://leetcode.cn/problems/convert-to-base-2/
+     * 相似题:
+     *   1073.负二进制数相加: https://leetcode.cn/problems/adding-two-negabinary-numbers/
      *
      * 对 base N 的转换问题，一般都是对值先取模，在除以这个数
      * 任意一个数 % -2， 可能的值有 1,0,-1; 对于 -1 我们无法证明怎么处理
@@ -64,11 +66,19 @@ class Solution1017 {
      * 上述方式的难点在于 基-2 的形式无法用正常的运算逻辑处理
      * 若我们将一个数按 基2 的展现形式从低位到高位依次转换为 基-2, 未转换化的部分始终属于 基2 表示，这部分可以走正常的运算
      * 那么仅需要处理奇数位为 1 的一种情况: 2^i --> (-2)^(i+1) + (-2)^i
-     *   若 基2 形式数 x 的某奇数位为 1, 如果我们将 基-2 形式的该位也设置为 1，原值 x 需要自增 N 才可以保持值不变
+     *   若 基2 形式数 x 的某奇数位为 1, 如果我们将 基-2 形式的该位也设置为 1，原值 x 需要自增到 N 才可以保持值不变
      *   设高位 (包含当前奇数位) 表示的值大小为 C, i 为奇数位. 比如 arr = "10111000", C = "10111", i == 3
      *     C * 2^i = (-2)^i + N
      *     ==> N = C * 2^i + 2^i = (C+1) * 2^i
      * 仅需要将高位值 C 自增 1 即可
+     * C+1 对结果有影响，
+     * C-1 对结果无影响; 若该位 base2 为 1, (C-1)/2 == C/2
+     *
+     * 若 C < 0, 可以等价与负的正整数 -C, 其二进制表示和正数相同，但每位的意义表示的是 -(2^i)
+     * 若 i 为奇数, 则无须处理 -(2^i) == (-2)^i
+     * 若 i 为偶数, -(2^i) --> (-2)^(i+1) + (-2)^i; 此时需要在奇数位上加 1
+     *   -C * 2^i = 2^i - N
+     *   ==> N = (C+1) * 2^i
      *
      * 优雅一点的转换方式:
      *   o. "111" % 2 == 1 --> (1, "11") /2
@@ -80,7 +90,8 @@ class Solution1017 {
     public String baseNeg2(int n) {
         if (n == 0) return "0";
 
-        int k = 1;
+        int k = n > 0 ? 1 : -1;
+        n = n > 0 ? n : -n;
         StringBuilder ret = new StringBuilder();
         while (n != 0) {
             if (n % 2 != 0) {
@@ -101,7 +112,7 @@ class Solution1017 {
     public static void main(String[] args) {
         Solution1017 solution = new Solution1017();
         System.out.println(solution.baseNeg2(1));
-        System.out.println(solution.baseNeg2(2));
+        System.out.println(solution.baseNeg2(-2));
         System.out.println(solution.baseNeg2(3));
         System.out.println(solution.baseNeg2(4));
         System.out.println(solution.baseNeg2(5));

@@ -68,7 +68,7 @@
  * Definition for a binary tree node.
  */
 class Solution1373 {
-    /**
+    /*
      * 后序遍历求二叉树的是否为 BST, 最大值, 最小值（判断是不是二叉搜索树）和二叉树的和
      * 记录期间的最大值
      * [是否为BST, minV, maxV, sum]
@@ -86,6 +86,12 @@ class Solution1373 {
 
     int maxSum = 0;
 
+    /*
+     * int[0] 是否二叉树, 0否; 1是
+     * int[1] root 为根树的数的最大值
+     * int[2] root 为根树的数的最小值
+     * int[3] root 为根树的和
+     */
     private int[] postorder(TreeNode root) {
         if (root == null)
             return new int[]{1, NULL_MIN, NULL_MAX, 0};

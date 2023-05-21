@@ -41,6 +41,19 @@
  * Definition for a binary tree node.
  */
 class Solution98 {
+    /* 98.验证二叉搜索树: https://leetcode.cn/problems/validate-binary-search-tree/
+     * 后续遍历相似题目:
+     *  1373.二叉搜索子树的最大键值和: https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/
+     *
+     * BST 中序遍历:
+     *  700.二叉搜索树中的搜索: https://leetcode.cn/problems/search-in-a-binary-search-tree/
+     *  530.二叉搜索树的最小绝对差: https://leetcode.cn/problems/minimum-absolute-difference-in-bst/
+     *  501.二叉搜索树中的众数: https://leetcode.cn/problems/find-mode-in-binary-search-tree/
+     *  230.二叉搜索树中第K小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-bst/
+     *
+     * 这个题解后续遍历做法
+     * 下面还有一个类用的中序遍历做法
+     */
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
 
@@ -48,7 +61,7 @@ class Solution98 {
                 && isValidBST(root.right, root.val, Long.MAX_VALUE);
     }
 
-    /**
+    /*
      * 方法描述
      *     1. 判断一棵树是否为二叉搜索树
      *     2. 判断这棵树的值是否在 min 和 max 之内
@@ -77,7 +90,7 @@ class Solution98 {
                 isValidBST(root.right, root.val, max);
     }
 
-    /**
+    /*
      * 也可以用 null 来表示无穷小 和 无穷大
      * @return
      */
@@ -112,7 +125,7 @@ class Solution98 {
 
 class InorderTraversal98 {
 
-    /**
+    /*
      * 利用二叉搜索树 中序遍历 有序的性质来完成判断
      *
      * 即不断用中序遍历顺序的前一个节点与当前节点比对, 如果是 大于 关系, 则可判断不是二叉搜索树

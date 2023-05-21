@@ -68,12 +68,20 @@
  * Definition for a binary tree node.
  */
 class Solution1373 {
-    /*
+    /* 1373.二叉搜索子树的最大键值和: https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/
+     * 判断 BST 相似题目:
+     *  98.验证二叉搜索树: https://leetcode.cn/problems/validate-binary-search-tree/
+     *
+     * BST 中序遍历:
+     *  700.二叉搜索树中的搜索: https://leetcode.cn/problems/search-in-a-binary-search-tree/
+     *  530.二叉搜索树的最小绝对差: https://leetcode.cn/problems/minimum-absolute-difference-in-bst/
+     *  501.二叉搜索树中的众数: https://leetcode.cn/problems/find-mode-in-binary-search-tree/
+     *  230.二叉搜索树中第K小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-bst/
+     *
      * 后序遍历求二叉树的是否为 BST, 最大值, 最小值（判断是不是二叉搜索树）和二叉树的和
      * 记录期间的最大值
      * [是否为BST, minV, maxV, sum]
-     *
-     * 这也是判断二叉搜索树的一种方法
+     * 判断是否为 BST, 中序遍历更简单, 但后续遍历可以顺便计算子树的和
      */
     public int maxSumBST(TreeNode root) {
         postorder(root);

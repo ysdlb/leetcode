@@ -28,9 +28,11 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution700 {
-    /**
+    /*
      * 二叉搜索树的性质
      * 基础题，类似简单题：98
+     *  98.验证二叉搜索树: https://leetcode.cn/problems/validate-binary-search-tree/
+     *  1373.二叉搜索子树的最大键值和: https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/
      */
     public TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;

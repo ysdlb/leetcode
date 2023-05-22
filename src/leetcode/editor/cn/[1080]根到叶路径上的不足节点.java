@@ -43,7 +43,7 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution1080 {
     /* 1080.根到叶路径上的不足节点: https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/
      * 相似题目:
      *  236.二叉树的最近公共祖先: https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/

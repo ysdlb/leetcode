@@ -48,6 +48,10 @@
  */
 class Solution236 {
     /**
+     * <a href=https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/>236. 二叉树的最近公共祖先</a>
+     * <p>
+     *  相似题目: <a href=https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/>1080. 根到叶路径上的不足节点</a>
+     * <p>
      * 递归定义, 非常优雅的递归解法
      * 函数描述: 给函数输入三个参数 root, p, q, 它会返回一个节点
      * @return

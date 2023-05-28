@@ -40,7 +40,13 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution668 {
-    /**
+    /* 668.乘法表中第k小的数: https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
+     * 第 k 大相似题目:
+     *   378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+     *   1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
+     * 一个描述相似的搜索问题:
+     *   240.搜索二维矩阵 II: https://leetcode.cn/problems/search-a-2d-matrix-ii/
+     *
      * 稍微转化下和 378 是一个题
      * 将乘法表扩展为一张真正的表, 这张二维表行列有序,
      * 那么最小值为 min = table[0][0], 最大值 max = table[m-1][n-1]

@@ -46,11 +46,19 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution378 {
-    /**
+    /* 378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+     * 第 k 大相似题目:
+     *   668.乘法表中第k小的数: https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
+     *   1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
+     * 一个描述相似的搜索问题:
+     *   240.搜索二维矩阵 II: https://leetcode.cn/problems/search-a-2d-matrix-ii/
+     *
      * 普通思路: (归并排序, 只利用了每行有序)
      * n 个指针, 每次找出这里面最小的一个数, 计数+1, 被选中的指针指向下一个. O(k*n)
      * 找最小的数可以用堆, 时间复杂度降低至 O(k*lgn)
      * 该思路参考 <a href="https://leetcode.cn/problems/merge-k-sorted-lists/">leetcode-23</a>
+     * k 可能很大, 接近 m*n
+     *
      *
      * 空间复杂度为 O(1) 的思路: 二分
      * 由于每行有序且每列有序, 所以我们指定一个 mid 属于 [matrix(0,0), matrix(n-1,n-1)]

@@ -41,7 +41,11 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution240 {
-    /**
+    /* 240.搜索二维矩阵 II: https://leetcode.cn/problems/search-a-2d-matrix-ii/
+     * 描述相似的第 k 大问题:
+     *   378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
+     *   668.乘法表中第k小的数: https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
+     *
      * 这个二维矩阵的特点:
      * 对任意一个元素, 所在行的前面都比它小; 所在列的下面都比它大
      * 如果这个元素在一个矩阵的右上角,

@@ -51,6 +51,16 @@ import java.util.*;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution373 {
     /* 373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
+     * 相似题目:
+     *   1439.有序矩阵中的第 k 个最小数组和
+     *   264.丑数 II
+     *   313.超级丑数
+     *   373.查找和最小的K对数字
+     *   632.最小区间
+     *   719.找出第 k 小的距离对
+     *   786.第 K 个最小的素数分数
+     *   1508.子数组和排序后的区间和
+     *   1675.数组的最小偏移量
      *
      * 直接暴力排序
      * 时间复杂度 n1*n2*lg(n1*n2)

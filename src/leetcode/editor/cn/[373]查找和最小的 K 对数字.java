@@ -52,8 +52,8 @@ import java.util.*;
 class Solution373 {
     /* 373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
      * 相似题目:
-     *   1439.有序矩阵中的第 k 个最小数组和
-     *   264.丑数 II
+     *   1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
+     *   264.丑数 II: https://leetcode.cn/problems/ugly-number-ii/
      *   313.超级丑数
      *   373.查找和最小的K对数字
      *   632.最小区间

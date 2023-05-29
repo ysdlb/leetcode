@@ -31,11 +31,8 @@
 // Related Topics 哈希表 数学 动态规划 堆（优先队列） 👍 1074 👎 0
 
 
-import java.util.HashSet;
-import java.util.Set;
-
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution254 {
+class Solution264 {
     /* 264.丑数 II: https://leetcode.cn/problems/ugly-number-ii/
      * 相似题目:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
@@ -58,6 +55,9 @@ class Solution254 {
             int ugly2 = ans[i2]*2, ugly3 = ans[i3]*3, ugly5 = ans[i5]*5;
 
             int ugly = Math.min(ugly2, Math.min(ugly3, ugly5));
+            // 唯一出现重复就在这里， 2*3 3*2
+            // 若 x1 列和 x2 列某个数相等; 如果我们选中 x1 的 a1, 将 x1 下一个数 a2(a2>a1) 放入集合
+            // 那么下一个更大的数只能 x2 的那个数, 这样可以说明相等的数一定会放在一起比较
             if (ugly2 == ugly) i2++;
             if (ugly3 == ugly) i3++;
             if (ugly5 == ugly) i5++;
@@ -65,6 +65,11 @@ class Solution254 {
             ans[i] = ugly;
         }
         return ans[n-1];
+    }
+
+    public static void main(String[] args) {
+        Solution264 so = new Solution264();
+        so.nthUglyNumber(12);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

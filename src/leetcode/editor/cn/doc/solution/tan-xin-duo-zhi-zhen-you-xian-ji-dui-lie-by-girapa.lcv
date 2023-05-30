@@ -1,0 +1,81 @@
+### 解题思路
+
+首先，我们想一下这样一个问题：题目要求是寻找最小区间，最小区间满足下面两点：
+* 长度最小(首要)
+* 长度相同时起点最小
+
+长度最小的区间必然是需要我们在计算中找到的，但是起点最小的区间我们是可以知道的。就是从每个区间中找最小的元素，组成的新的区间，我们称其为起始区间。如果之后没有长度比起始区间长度更短的，那么起始区间就是我们所求的最小区间，因为起始区间的起点是最小的。
+
+那么我们所需要做的就是搜索是否有比起始区间还要短的区间了。那么该如何搜索呢？
+答案是 **每次都将当前区间中最小的元素丢弃，换成其原始数组中的下一个元素**。就是说，如果当前我们从每个区间中选取的元素分别是 `a1_1,a2_1,a3_1...ak_1` (前面的数字代表来自第几个数组，后面的数字表示该数是该数组的第几个元素),若此时最小的元素是 `ai_1`，最大元素是 `aj_1` ，那么区间就为 `[ai_1, aj_1]`，区间中最小元素是 `ai_1`,那么我们就将 `ai_1` 丢弃,将 `ai_2` 拿出来放进去。
+
+**原因**：如果不换 `ai_1` ,那么区间的起点就一直是 `ai_1` ,而且区间长度不可能缩小，区间长度取决于起点和终点，而终点是不可能变小的。因为我们是从小到大进行元素的选取，我们每次丢弃一个元素，就要选择它在原数组中的下一位，而原数组是升序排列的。故终点不可能减小。
+那么，我们只能够通过让起点增大来是区间缩小，即每次丢弃最小的元素，换成它原数组的下一个元素。然后再计算当前所选区间的长度，如果小于之前的区间长度就更新即可。
+
+**结束条件**：当当前最小元素是其原来整数数组的最后一个元素时，就是结束的时候。因为之后的操作不可能更改起点了，只会让终点变大，即区间变长。
+
+### 代码
+
+* []
+
+```Java
+class Solution {
+    class NumGroup{
+        public NumGroup(int num, int grp){
+            this.num = num;
+            this.grp = grp;
+        }
+        int num; //数值
+        int grp; //组号
+    }
+    public int[] smallestRange(List<List<Integer>> nums) {
+        //因为每次都要找最小元素，所以维护一个最小堆比较合适
+        PriorityQueue<NumGroup> numgrp = new PriorityQueue<>(new Comparator<NumGroup>(){
+            @Override 
+            public int compare(NumGroup n1, NumGroup n2){
+                return n1.num - n2.num;
+            }
+        });
+
+        int end = -100001;
+        //记录每个数组当前的指针位置，一开始都指向第0个元素，即每个区间的最小元素
+        int[] index = new int[nums.size()];
+
+        //起始区间
+        for(int i = 0; i < nums.size(); i++){
+            if(nums.get(i).get(0) > end) end = nums.get(i).get(0);
+            NumGroup num = new NumGroup(nums.get(i).get(0), i);
+            numgrp.offer(num);
+        }
+
+        int max = end;
+        int start = numgrp.peek().num;
+        int min = start;
+        int len = end - start + 1;
+
+        while(true){
+            //grp为当前最小元素的原数组号
+            int grp = numgrp.poll().grp;
+            //如果当前最小元素已经是原数组最大元素了，则退出
+            if(index[grp]+1 == nums.get(grp).size()) break;
+
+            //索引++，并将当前最小元素的原数组中的下一个元素压入优先级队列
+            index[grp]++;
+            NumGroup n = new NumGroup(nums.get(grp).get(index[grp]), grp);
+            numgrp.offer(n);
+            //当前最大值
+            if(n.num > max) max = n.num;
+            min = numgrp.peek().num;
+            //长度变小
+            if(max-min+1 < len){
+                start = min;
+                end = max;
+                len = max-min+1;
+            }
+        }
+
+        return new int[]{start, end};
+    }
+}
+```
+

@@ -48,7 +48,10 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution76 {
-    /**
+    /* 76.最小覆盖子串: https://leetcode.cn/problems/minimum-window-substring/
+     * 可转窗口问题:
+     *  632.最小区间: https://leetcode.cn/problems/smallest-range-covering-elements-from-k-lists/
+     *
      * need 数组表示 t 中所有字符以及字符的数量
      * find 数组表示 s 串窗口内找到的字符以及字符数量
      *

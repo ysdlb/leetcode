@@ -47,6 +47,8 @@ class Solution1080 {
     /* 1080.根到叶路径上的不足节点: https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/
      * 相似题目:
      *  236.二叉树的最近公共祖先: https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/
+     * 相似题目(后续遍历, 前后双方向携带标记):
+     *  1110.删点成林: https://leetcode.cn/problems/delete-nodes-and-return-forest/
      *
      * 问题要求:
      *   如果通过节点 node 所有的 “根-叶“ 路径和小于 limit，那么称其为不足节点，应当删除

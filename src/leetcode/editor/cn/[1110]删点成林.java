@@ -44,12 +44,51 @@ import java.util.stream.Collectors;
  * Definition for a binary tree node.
  */
 class Solution1110 {
-    /**
+    /* 1110.删点成林: https://leetcode.cn/problems/delete-nodes-and-return-forest/
+     * 相似题目(后续遍历, 前后双方向携带标记):
+     *  1080.根到叶路径上的不足节点: https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/
+     *
      * 删除一个节点之后,
      *  其左右子树独立出来;
      *  其父节点与该节点的连接断开
+     *
+     * 换个角度:
+     *  1. 若一个节点没有父节点, 且它不该被删除, 则将其视为一颗独立的树
+     *  2. 若它就是该被删除, 不管怎样, 都把这颗树删除 ( 这颗树已经在条件 1 的作用下, 被肢解过了 )
      */
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        if (to_delete == null) return Collections.singletonList(root);
+
+        Set<Integer> set = Arrays.stream(to_delete).boxed().collect(Collectors.toSet());
+        List<TreeNode> ans = new ArrayList<>();
+        dfs(root, true, set, ans);
+        return ans;
+    }
+
+    /**
+     * @param root 一颗树
+     * @param noParent 是否有父节点
+     * @param toDelete 带删除的集合
+     * @param ans 森林结果
+     * @return 若这颗树需要删除, 返回 null; 否则返回 root
+     * 特殊的策略: 如果当前节点不该被删除, 但它已经没有了父节点, 那它应该放进 ans 中
+     * 如果当前节点应该被删除, 返回 null, 不论有无父节点都会被删除
+     */
+    private TreeNode dfs(TreeNode root, boolean noParent, Set<Integer> toDelete, List<TreeNode> ans) {
+        if (root == null) return null;
+
+        boolean isDelete = toDelete.contains(root.val);
+        root.left = dfs(root.left, isDelete, toDelete, ans);
+        root.right = dfs(root.right, isDelete, toDelete, ans);
+        if (isDelete) return null;
+
+        if (noParent) ans.add(root);
+        return root;
+    }
+
+
+    // 2022-06-17
+    public List<TreeNode> delNodes_old(TreeNode root, int[] to_delete) {
         if (root == null) return null;
         if (to_delete == null) return Collections.singletonList(root);
 

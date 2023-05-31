@@ -55,6 +55,7 @@ class Solution719 {
      *  2386.
      * 纯二分:
      *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
+     *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
      *
      * 更适合利用有序多路归并:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/

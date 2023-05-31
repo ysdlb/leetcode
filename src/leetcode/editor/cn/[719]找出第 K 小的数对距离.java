@@ -48,9 +48,23 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution719 {
-    /**
-     * 两两一对有 n(n-1) 个数对, 配合 size 为 k 的小顶堆;
-     * 可在 O(n^2*lgk) + O(k) 的时间内找到第 k 小的数对距离
+    /* 719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
+     * 二分相似题目:
+     *  378.
+     *  2040.
+     *  2386.
+     * 更适合利用有序多路归并:
+     *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
+     *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/
+     *
+     * 纯优先队列做法:
+     * 构建一个 size 为 k 的大根堆; 扫描两两一对有 n(n-1) 个数对, 每个数对的差值用来做比较
+     *  若不足 k 个，直接将数对入堆
+     *  若已达 k 个
+     *   1. 当前数对比堆顶元素大, 那它肯定比堆里的 k 个都大, 不可能是第 k 大的元素, 直接丢弃
+     *   2. 当前数对比堆顶元素小, 堆顶元素肯定不是第 k 大的元素, 丢弃堆顶元素, 放入当前元素
+     * 可在 O(n^2*lgk) + O(k) 的时间内找到 k 个最小的数对距离, 堆顶元素就是要求的第 k 个
+     * (因为 n 的量级在 10^4, 这个时间复杂度不行)
      *
      * 如果数对距离 distance == x 有不少于 k 个数对符合条件, 且 distance == x-1 只有少于 k 个 数对符合条件
      * 那么 x 就是我们需要的解
@@ -82,7 +96,7 @@ class Solution719 {
         return min;
     }
 
-    /**
+    /*
      * count(x)
      * i, j 两个指针,
      *

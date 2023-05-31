@@ -53,6 +53,9 @@ class Solution719 {
      *  378.
      *  2040.
      *  2386.
+     * 纯二分:
+     *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
+     *
      * 更适合利用有序多路归并:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
      *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/

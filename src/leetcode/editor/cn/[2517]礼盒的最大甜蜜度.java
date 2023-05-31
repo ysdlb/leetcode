@@ -56,8 +56,8 @@ class Solution2517 {
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
      *
-     * 最小化最大值问题
-     * 最小化: 给定一个甜蜜度 sweetness, 可以很方便计算在有序 prize 里最多可以找出多少个不同糖果 count, 保证它们之前都满足这个甜蜜度
+     * 最大化最小值问题
+     * 最小值: 给定一个甜蜜度 sweetness, 可以很方便计算在有序 prize 里最多可以找出多少个不同糖果 count, 保证它们之前都满足这个甜蜜度
      *  有序包含了贪心的思想,
      *   1. 初始将最小价格的糖果 计入 count
      *   2. 越过第一个遍历 prize 列表, 若当前糖果的价格 - 最后计入 count 的那个糖果价格 >= sweetness, 那么将这个糖果也计入 count

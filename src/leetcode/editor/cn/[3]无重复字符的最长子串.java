@@ -42,9 +42,10 @@ import java.util.Arrays;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution3 {
-    /* 无重复字符的最长子串: https://leetcode.cn/problems/longest-substring-without-repeating-characters/
+    /* 3.无重复字符的最长子串: https://leetcode.cn/problems/longest-substring-without-repeating-characters/
      * 滑动窗口相似题目:
      *  2106.摘水果: https://leetcode.cn/problems/maximum-fruits-harvested-after-at-most-k-steps/     * 字串, 不是子序列
+     *  1156.单字符重复子串的最大长度: https://leetcode.cn/problems/swap-for-longest-repeated-character-substring/
      *
      * 区间和不涉及负数，优先用滑动窗口解决
      *

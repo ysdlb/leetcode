@@ -48,10 +48,12 @@
 class Solution378 {
     /* 378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
      * 第 k 大相似题目:
-     *   668.乘法表中第k小的数: https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
-     *   1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
+     *  668.乘法表中第k小的数: https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/
+     *  1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
      * 一个描述相似的搜索问题:
-     *   240.搜索二维矩阵 II: https://leetcode.cn/problems/search-a-2d-matrix-ii/
+     *  240.搜索二维矩阵 II: https://leetcode.cn/problems/search-a-2d-matrix-ii/
+     * 二分汇总题目:
+     *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      *
      * 普通思路: (归并排序, 只利用了每行有序)
      * n 个指针, 每次找出这里面最小的一个数, 计数+1, 被选中的指针指向下一个. O(k*n)

@@ -50,13 +50,13 @@ import java.util.Arrays;
 class Solution719 {
     /* 719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      * 二分相似题目:
-     *  378.
+     *  378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
      *  2040.
      *  2386.
      * 纯二分:
      *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
      *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
-     *
+     *  1923.最长公共子路径: https://leetcode.cn/problems/longest-common-subpath/
      * 更适合利用有序多路归并:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
      *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/

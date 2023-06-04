@@ -94,8 +94,8 @@ class Solution1508 {
         }
 
         left--;
-        int lNum = getKth(pSum, left);
-        int rNum = getKth(pSum, right);
+        int lNum = getKth(ppSum, pSum, left);
+        int rNum = getKth(ppSum, pSum, right);
 
         long[] l = getLessThanXSum(ppSum, pSum, lNum);
         long[] r = getLessThanXSum(ppSum, pSum, rNum);
@@ -128,39 +128,24 @@ class Solution1508 {
     }
 
     /**
-     * @param preSum O(n) 的前缀和用来逻辑表示 O(n^2) 的区间和数组
+     * @param pSum O(n) 的前缀和用来逻辑表示 O(n^2) 的区间和数组
      * @param k k
      * @return 区间和数组 sum 中, 第 k 大的数
      */
-    private int getKth(int[] preSum, int k) {
-        int n = preSum.length - 1;
-        int l = 0, r = preSum[n];
+    private int getKth(int[] ppSum, int[] pSum, int k) {
+        int n = pSum.length - 1;
+        int l = 0, r = pSum[n];
         while (l < r) {
-            int x = (l+r) >>> 1;
-            if (count(preSum, x) >= k) {
-                r = x;
-            } else {
-                l = x + 1;
+            int x = (l+r+1) >>> 1;
+            if (getLessThanXSum(ppSum, pSum, x)[1] < k) {
+                l = x;
+            } else { // count(e<x) >= k, 一定 (count(e <= x) > k
+                r = x - 1;
             }
         }
         return l;
     }
 
-    /**
-     * @param preSum 左开右闭的前缀和
-     * @return 满足 sum[i] <= x 的值的数量
-     */
-    private int count(int[] preSum, int x) {
-        int cnt = 0;
-        int n = preSum.length - 1;
-        for (int i = 0, j = 0; i < n; i++) {
-            while (j+1 <= n && preSum[j+1] - preSum[i] <= x)
-                j++;
-            j = Math.max(j, i);
-            cnt += j-i;
-        }
-        return cnt;
-    }
 
     public static void main(String[] args) {
         Solution1508 solu = new Solution1508();

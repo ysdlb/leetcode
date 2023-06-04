@@ -1,0 +1,83 @@
+先讲下比较显然的做法.
+第一步:先把所有奇数乘$2$,这样就等价于只有操作$1$.
+第二步:操作$1$的只会减少某个数的值,而只有减少最大值结果才可能更优.
+第三步:使用平衡树或堆维护最大值,直到最大值为奇数不能再操作为止.
+可以发现这个做法的复杂度是$O(n\log(a_\text{max})\log n)$,因为每个数可能会被操作$\log(a_i)$次.
+
+那么是否存在复杂度更低的做法呢?
+考虑一个事实:如果结果序列全为偶数,那么将所有数除以$2$后,答案不会更劣.
+因此结果中一定会有一个奇数.
+由此可以得出最重要的结论:**令$a_i=2^{r_i}p_i$,其中$p_i$为奇数,则$p_\text{max}$一定在答案序列中.**
+证明:如果$p_\text{max}$对应的$a$是以$2^{r}p_\text{max}(r>0)$的形式存在,由于答案一定存在奇数,而这个奇数$p_i\le p_\text{max}$,因此将$2^rp_\text{max} $变成$p_\text{max}$答案不会更劣.
+
+现在,已经确定结果序列中的一个数了,那么从直觉上来讲,应该让剩下的数"尽可能和这个数近".
+因此,对每个$a_i\le p_\text{max}$,应该保持$a_i$不变;对每个$a_i> p_\text{max}$,应该在保持$a_i\ge p_\text{max}$的情况下,先尽量对$a_i$除以$2$.但最优解可能需要对某些$a_i>p_\text{max}$的$a_i$再除以一次$2$.
+
+现在的序列排序后看起来像是这样的$a_1,a_2,\cdots,p_\text{max},a_k,\cdots,a_{n-1},a_n$,其中对于所有$i\ge k$都有$\dfrac{a_i}2<p_\text{max}<a_i$,现在回到原来的做法,只需要线性时间.
+
+复杂度变为$O(n(\log a_\text{max}+\log n))$,理论上能通过更大的数据.
+
+代码比较简短:
+
+* C++
+
+```C++
+class Solution {
+public:
+    int minimumDeviation(vector<int>& nums) {
+        int p_max = 1;
+        for(int a : nums){
+            while(a % 2 == 0) a /= 2;
+            p_max = max(p_max, a);
+        }
+        vector<int> upper;
+        int min = p_max;
+        for(int a : nums){
+            if(a % 2 == 1) a *= 2;
+            while(a >= 2 * p_max) a /= 2;
+            if(a >= p_max) upper.push_back(a);
+            min = std::min(min, a);
+        }
+        sort(upper.begin(), upper.end());
+        int ans = upper.back() - min;
+        for(int i = upper.size() - 1; upper[i] > p_max; i -= 1){
+            min = std::min(min, upper[i] / 2);
+            ans = std::min(ans, upper[i - 1] - min);
+        }
+        return ans;
+    }
+};
+```
+
+如果你是个C++选手,你肯定已经发现$\log a_\text{max} $对应的复杂度可以通过位运算去除,这样复杂度就变成$O(n\log n)$.
+
+* C++
+
+```C++
+class Solution {
+public:
+    int minimumDeviation(vector<int>& nums) {
+        int p_max = 1;
+        for(int a : nums) p_max = max(p_max, a >> (__builtin_ctz(a)));
+        vector<int> upper;
+        int min = p_max;
+        for(int a : nums){
+            if(a & 1) a <<= 1;
+            if(a >= p_max){
+                a >>= __builtin_clz(p_max) - __builtin_clz(a);
+                if(a < p_max) a <<= 1;
+                upper.push_back(a);
+            }
+            min = std::min(min, a);
+        }
+        sort(upper.begin(), upper.end());
+        int ans = upper.back() - min;
+        for(int i = upper.size() - 1; upper[i] > p_max; i -= 1){
+            min = std::min(min, upper[i] >> 1);
+            ans = std::min(ans, upper[i - 1] - min);
+        }
+        return ans;
+    }
+};
+```
+

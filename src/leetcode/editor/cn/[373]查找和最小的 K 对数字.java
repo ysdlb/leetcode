@@ -56,7 +56,7 @@ class Solution373 {
      *  313.超级丑数: https://leetcode.cn/problems/super-ugly-number/
      *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/
      *  1439.有序矩阵中的第 k 个最小数组和: https://leetcode.cn/problems/find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows/
-     * 更像窗口问题:
+     * 也像窗口问题:
      *  632.最小区间: https://leetcode.cn/problems/smallest-range-covering-elements-from-k-lists/
      * 只是适合二分, 不太适合利用有序特点堆归并:
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/

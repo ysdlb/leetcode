@@ -49,6 +49,8 @@ import java.util.Map;
 class Solution2352 {
 
     /* 2352.相等行列对: https://leetcode.cn/problems/equal-row-and-column-pairs/
+     * 相似题:
+     *  1923.最长公共子路径: https://leetcode.cn/problems/longest-common-subpath/
      *
      * 如果需要暴力比较的化，每一行都会比较全部的列，总时间复杂度 O(N^3)
      *

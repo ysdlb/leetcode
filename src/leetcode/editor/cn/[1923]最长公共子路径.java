@@ -61,6 +61,8 @@ class Solution1923 {
     /* 1923.最长公共子路径: https://leetcode.cn/problems/longest-common-subpath/
      * 经典LCS:
      *  1143.最长公共子序列: https://leetcode.cn/problems/longest-common-subsequence/
+     * hash 相似题:
+     *  2352.相等行列对: https://leetcode.cn/problems/equal-row-and-column-pairs/
      * 二分问题:
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      *

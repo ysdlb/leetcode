@@ -51,15 +51,16 @@ class Solution719 {
     /* 719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      * 二分相似题目:
      *  378.有序矩阵中第 K 小的元素: https://leetcode.cn/problems/kth-smallest-element-in-a-sorted-matrix/
-     *  2040.
-     *  2386.
-     * 纯二分:
-     *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
-     *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
+     *  2386.找出数组的第 K 大和: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
+     *  2040.两个有序数组的第 K 小乘积: https://leetcode.cn/problems/kth-smallest-product-of-two-sorted-arrays/
+     * 最大化最小值二分汇总
+     *  2528.最大化城市的最小供电站数目: https://leetcode.cn/problems/maximize-the-minimum-powered-city/
+     * 二分:
      *  1923.最长公共子路径: https://leetcode.cn/problems/longest-common-subpath/
      * 更适合利用有序多路归并:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
      *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/
+     *  2386.找出数组的第 K 大和: https://leetcode.cn/problems/find-the-k-sum-of-an-array/
      *
      * 纯优先队列做法:
      * 构建一个 size 为 k 的大根堆; 扫描两两一对有 n(n-1) 个数对, 每个数对的差值用来做比较

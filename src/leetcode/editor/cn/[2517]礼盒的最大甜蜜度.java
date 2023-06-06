@@ -54,7 +54,7 @@ class Solution2517 {
     /* 2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
      * 相似题:
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
-     *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
+     *  2528.最大化城市的最小供电站数目: https://leetcode.cn/problems/maximize-the-minimum-powered-city/
      *
      * 最大化最小值问题
      * 最小值: 给定一个甜蜜度 sweetness, 可以很方便计算在有序 prize 里最多可以找出多少个不同糖果 count, 保证它们之前都满足这个甜蜜度

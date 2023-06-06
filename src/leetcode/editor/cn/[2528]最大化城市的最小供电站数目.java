@@ -68,9 +68,11 @@ class Solution2528 {
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
      * 最大化最小值二分
      *  1552.两球之间的磁力: https://leetcode.cn/problems/magnetic-force-between-two-balls/
+     *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
+     *
      *  2439.最小化数组中的最大值: https://leetcode.cn/problems/minimize-maximum-of-array/
      *  2513.最小化两个数组中的最大值: https://leetcode.cn/problems/minimize-the-maximum-of-two-arrays/
-     *  2517.礼盒的最大甜蜜度: https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/
+     *  2560.打家劫舍 IV: https://leetcode.cn/problems/house-robber-iv/
      *
      * 量级: 上万座城市, 每个城市上万个供电站, k 进亿
      * 显然, 要想最差城市的供电站数目越大, 所需的新增供电站数量 k 就越大

@@ -37,10 +37,13 @@ import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution198 {
-    /**
+    /* 198.打家劫舍: https://leetcode.cn/problems/house-robber/
+     * 相似题:
+     *  2560.打家劫舍 IV: https://leetcode.cn/problems/house-robber-iv/
+     *
      * 小偷的状态有两个
      *   1. 目前偷到了第几家房子
-     *   2. 上一家偷了还是没有偷
+     *   2. 上一家偷了还是没有偷 (这一家偷还是不偷更合适)
      *
      * 然后它的选择
      *   偷到的金额最高

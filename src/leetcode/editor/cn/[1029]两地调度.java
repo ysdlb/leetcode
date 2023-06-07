@@ -53,6 +53,8 @@ import java.util.Arrays;
 class Solution1029 {
 
     /* 1029.两地调度: https://leetcode.cn/problems/two-city-scheduling/
+     * 相似题:
+     *  2611.老鼠和奶酪: https://leetcode.cn/problems/mice-and-cheese/
      *
      * 贪心思路:
      * 每个人可以选择 a,b, 且至少去一个城市

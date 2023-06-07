@@ -49,6 +49,7 @@ class Solution875 {
     /* 875.爱吃香蕉的珂珂: https://leetcode.cn/problems/koko-eating-bananas/
      * 相似题:
      *  1283.使结果不超过阈值的最小除数: https://leetcode.cn/problems/find-the-smallest-divisor-given-a-threshold/
+     *  2187.完成旅途的最少时间: https://leetcode.cn/problems/minimum-time-to-complete-trips/
      *  1011:
      * 二分问题汇总:
      *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/

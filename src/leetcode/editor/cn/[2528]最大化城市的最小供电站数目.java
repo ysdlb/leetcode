@@ -73,6 +73,7 @@ class Solution2528 {
      *  2439.最小化数组中的最大值: https://leetcode.cn/problems/minimize-maximum-of-array/
      *  2513.最小化两个数组中的最大值: https://leetcode.cn/problems/minimize-the-maximum-of-two-arrays/
      *  2560.打家劫舍 IV: https://leetcode.cn/problems/house-robber-iv/
+     *  2616.最小化数对的最大差值: https://leetcode.cn/problems/minimize-the-maximum-difference-of-pairs/
      *
      * 量级: 上万座城市, 每个城市上万个供电站, k 进亿
      * 显然, 要想最差城市的供电站数目越大, 所需的新增供电站数量 k 就越大

@@ -46,19 +46,21 @@ import javax.imageio.stream.ImageOutputStreamImpl;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution875 {
-    /**
+    /* 875.爱吃香蕉的珂珂: https://leetcode.cn/problems/koko-eating-bananas/
+     * 相似题:
+     *  1283.使结果不超过阈值的最小除数: https://leetcode.cn/problems/find-the-smallest-divisor-given-a-threshold/
+     *  1011:
+     * 二分问题汇总:
+     *  719.找出第 k 小的距离对: https://leetcode.cn/problems/find-k-th-smallest-pair-distance/
+     *
      * 吃香蕉的速度 x, 有意义的取值范围为 [1...maxPile]
      * 第一个可以吃完所有香蕉的 x 取值就是可以吃掉所有香蕉的最小速度 K
-     *
      * 吃不完在取值范围内的左边, 吃的完在取值范围内右边. 这里可以用二分
      * 每次判断能不能吃完需要 O(n) 的时间
      *
      * 注: 吃每一堆香蕉的所需时间要向上取整
      *
      * 这个题是全程自己想的（提示了二分）
-     *
-     * 类似题
-     * 1011
      */
     public int minEatingSpeed(int[] piles, int h) {
         if (piles.length < 1) return -1;

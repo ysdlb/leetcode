@@ -57,6 +57,8 @@ class Solution719 {
      *  2528.最大化城市的最小供电站数目: https://leetcode.cn/problems/maximize-the-minimum-powered-city/
      * 二分:
      *  1923.最长公共子路径: https://leetcode.cn/problems/longest-common-subpath/
+     * 普通二分汇总:
+     *  875.爱吃香蕉的珂珂: https://leetcode.cn/problems/koko-eating-bananas/
      * 更适合利用有序多路归并:
      *  373.查找和最小的 K 对数字: https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/
      *  786.第 K 个最小的素数分数: https://leetcode.cn/problems/k-th-smallest-prime-fraction/

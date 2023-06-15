@@ -30,7 +30,10 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution5 {
-    /**
+    /* 5.最长回文子串: https://leetcode.cn/problems/longest-palindromic-substring/
+     * 相似题目:
+     *  647.回文子串: https://leetcode.cn/problems/palindromic-substrings/
+     *  1177.构建回文串检测: https://leetcode.cn/problems/can-make-palindrome-from-substring/
      * 简单做法, 从中心向两边扩展的做法
      * 以每个可能的中心(单中心或者双中心)扩展出最长的回文串
      * 然后从这些里面再找出最长的

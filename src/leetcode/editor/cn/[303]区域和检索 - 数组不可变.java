@@ -52,7 +52,10 @@ class NumArray {
 
     private final int[] nums;
 
-    /**
+    /* 303.区域和检索 - 数组不可变: https://leetcode.cn/problems/range-sum-query-immutable/
+     * 相似题目:
+     *  1177.构建回文串检测: https://leetcode.cn/problems/can-make-palindrome-from-substring/
+     *
      * 二维前缀和: 304
      * 类似题目不通解法: 307
      */

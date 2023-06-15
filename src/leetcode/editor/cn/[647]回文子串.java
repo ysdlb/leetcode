@@ -36,7 +36,10 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution647_ZHONGXINTUOZHAN {
-    /**
+    /* 647.回文子串: https://leetcode.cn/problems/palindromic-substrings/
+     * 相似题:
+     *  5.最长回文子串: https://leetcode.cn/problems/longest-palindromic-substring/
+     *
      * 相较于暴力法, 枚举出所有的字串, O(n^2), 在判断是否为回文串 O(n)
      * 中心拓展枚举所有的中心 O(n), 计算该中心的所有会文串 O(n)
      *
